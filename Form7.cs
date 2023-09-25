@@ -17,7 +17,7 @@ namespace Estudio
         {
             InitializeComponent();
 
-            //---ComboBox recebendo os nomes das modalidades do banco---
+            //---ComboBox recebendo os nomes das modalidades do banco de dados---
             Modalidade exc = new Modalidade();
             MySqlDataReader r = exc.consultarTodasModalidades();
             while (r.Read())
