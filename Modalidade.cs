@@ -87,18 +87,33 @@ namespace Estudio
         public bool excluirModalidade()
         {
             bool exc = false;
+            MySqlDataReader resultado = null;
             try
             {
                 DAO_Conexao.con.Open();
                 MySqlCommand consulta = new MySqlCommand("select idEstudio_Modalidade from Estudio_Modalidade where descricaoModalidade ='" + Desc + "'", DAO_Conexao.con);
-                int id = consulta.ExecuteNonQuery();
-                Console.WriteLine(id);
-                MySqlCommand delete = new MySqlCommand("update Estudio_Modalidade set ativa = 1 where idEstudio_Modalidade ="+ id, DAO_Conexao.con);
-                exc = true;
+                resultado = consulta.ExecuteReader();
+                if (resultado.Read())
+                {
+                    int id = int.Parse(resultado["idEstudio_Modalidade"].ToString());
+                    DAO_Conexao.con.Close();
+                    DAO_Conexao.con.Open();
+                    MySqlCommand delete = new MySqlCommand("update Estudio_Modalidade set ativa = 1 where idEstudio_Modalidade =" + id, DAO_Conexao.con);
+                    Console.WriteLine("update Estudio_Modalidade set ativa = 1 where idEstudio_Modalidade =" + id);
+                    delete.ExecuteNonQuery();
+                    exc = true;
+                }
+                else
+                    Console.WriteLine("Não encontrado");
+                
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
             }
             return exc;
         }
