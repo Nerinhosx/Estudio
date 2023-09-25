@@ -90,12 +90,15 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand delete = new MySqlCommand("update Estudio_Modalidade set ativa = 1 where descricaoModalidade ='"+ Desc +"'", DAO_Conexao.con);
+                MySqlCommand consulta = new MySqlCommand("select idEstudio_Modalidade from Estudio_Modalidade where descricaoModalidade ='" + Desc + "'", DAO_Conexao.con);
+                int id = consulta.ExecuteNonQuery();
+                Console.WriteLine(id);
+                MySqlCommand delete = new MySqlCommand("update Estudio_Modalidade set ativa = 1 where idEstudio_Modalidade ="+ id, DAO_Conexao.con);
                 exc = true;
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.ToString());
             }
             return exc;
         }

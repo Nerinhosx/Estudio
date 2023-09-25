@@ -29,7 +29,15 @@ namespace Estudio
 
         private void btnExcMod_Click(object sender, EventArgs e)
         {
-
+            Modalidade m = new Modalidade(comboBox1.Text);
+            if(m.excluirModalidade())
+            {
+                MessageBox.Show("Modalidade excluída com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Exclusão de modalidade falha!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
