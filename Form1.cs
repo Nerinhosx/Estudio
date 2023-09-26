@@ -100,5 +100,12 @@ namespace Estudio
             form7.MdiParent = this;
             form7.Show();
         }
+
+        private void consultarModalidadeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form8 form8 = new Form8(0);
+            form8.MdiParent = this;
+            form8.Show();
+        }
     }
 }

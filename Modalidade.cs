@@ -56,11 +56,22 @@ namespace Estudio
             }
             return cad;
         }
-        /*
+        
         public MySqlDataReader consultarModalidade()
         {
-
-        }*/
+            MySqlDataReader result = null;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand consultar = new MySqlCommand("select * from Estudio_Modalidade where descricaoModalidade = '" + Desc +"'");
+                result = consultar.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return result;
+        }
 
         public MySqlDataReader consultarTodasModalidades()
         {
