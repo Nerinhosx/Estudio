@@ -134,6 +134,7 @@ namespace Estudio
                     DAO_Conexao.con.Close();
                     DAO_Conexao.con.Open();
                     MySqlCommand ativa = new MySqlCommand("update Estudio_Modalidade set ativa = 0 where idEstudio_Modalidade = "+ id, DAO_Conexao.con);
+                    ativa.ExecuteNonQuery();
                     ativou = true;
                 }
             }

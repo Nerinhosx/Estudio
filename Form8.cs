@@ -110,7 +110,15 @@ namespace Estudio
 
         private void btnAtivar_Click(object sender, EventArgs e)
         {
-            
+            Modalidade m = new Modalidade(cbxDesc.Text);
+            if(m.tornarAtivo())
+            {
+                MessageBox.Show("Modalidade ativada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Ativação de modalidade falha.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
