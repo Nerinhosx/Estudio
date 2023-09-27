@@ -70,6 +70,7 @@ namespace Estudio
             this.btnAtivar.TabIndex = 9;
             this.btnAtivar.Text = "Tornar ativo";
             this.btnAtivar.UseVisualStyleBackColor = true;
+            this.btnAtivar.Click += new System.EventHandler(this.btnAtivar_Click);
             // 
             // btnAtualizar_Consultar
             // 
@@ -109,6 +110,7 @@ namespace Estudio
             this.cbxDesc.Name = "cbxDesc";
             this.cbxDesc.Size = new System.Drawing.Size(252, 21);
             this.cbxDesc.TabIndex = 4;
+            this.cbxDesc.SelectedIndexChanged += new System.EventHandler(this.cbxDesc_SelectedIndexChanged);
             // 
             // label4
             // 

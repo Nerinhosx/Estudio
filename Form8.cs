@@ -41,6 +41,7 @@ namespace Estudio
             }
             if(opcao == 1)
             {
+                this.Text = "Atualizar Modalidades";
                 btnAtualizar_Consultar.Text = ("Atualizar");
                 btnAtivar.Visible = true;
                 btnAtivar.Enabled = false;
@@ -65,6 +66,51 @@ namespace Estudio
                 }
                 DAO_Conexao.con.Close();
             }
+            if(opcao == 1)
+            {
+                String desc = cbxDesc.Text;
+                float prc = float.Parse(txtPrc.Text);
+                int qAl = int.Parse(txtAl.Text);
+                int qAu = int.Parse(txtAu.Text);
+                Modalidade m = new Modalidade(desc, prc, qAl, qAu);
+                if(m.atualizarModalidade())
+                {
+                    MessageBox.Show("Modalidade atualizada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Atualização de modalidade falha.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void cbxDesc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (opcao == 1)
+            {
+                Modalidade m = new Modalidade(cbxDesc.Text);
+                MySqlDataReader r = m.consultarModalidade();
+                while (r.Read())
+                {
+                    txtPrc.Text = r["precoModalidade"].ToString();
+                    txtAl.Text = r["qtdeAlunos"].ToString();
+                    txtAu.Text = r["qtdeAulas"].ToString();
+                }
+                DAO_Conexao.con.Close();
+                if(m.verificaInativo())
+                {
+                    btnAtivar.Enabled = true;
+                }
+                else
+                {
+                    btnAtivar.Enabled = false;
+                }
+            }
+        }
+
+        private void btnAtivar_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

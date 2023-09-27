@@ -19,7 +19,7 @@ namespace Estudio
 
         private void btnCadMod_Click(object sender, EventArgs e)
         {
-            double prc = double.Parse(txtPrcCadMod.Text);
+            float prc = float.Parse(txtPrcCadMod.Text);
             int al = int.Parse(txtAlCadMod.Text);
             int au = int.Parse(txtAuCadMod.Text);
             Modalidade mod = new Modalidade(txtDescCadMod.Text, prc, al, au);
