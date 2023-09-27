@@ -89,6 +89,22 @@ namespace Estudio
             return mod;
         }
 
+        public MySqlDataReader consultarModalidadesAtivas()
+        {
+            MySqlDataReader modAtv = null;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand consAtv = new MySqlCommand("select descricaoModalidade from Estudio_Modalidade where ativa = 0", DAO_Conexao.con);
+                modAtv = consAtv.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return modAtv;
+        }
+
         public bool atualizarModalidade()
         {
             bool atualizou = false;

@@ -19,7 +19,7 @@ namespace Estudio
 
             //---ComboBox recebendo os nomes das modalidades do banco de dados---
             Modalidade exc = new Modalidade();
-            MySqlDataReader r = exc.consultarTodasModalidades();
+            MySqlDataReader r = exc.consultarModalidadesAtivas();
             while (r.Read())
             {
                 comboBox1.Items.Add(r["descricaoModalidade"].ToString());
