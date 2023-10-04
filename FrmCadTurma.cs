@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,14 @@ namespace Estudio
         public FrmCadTurma()
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+
+            Modalidade con_mod = new Modalidade();
+            MySqlDataReader r = con_mod.consultarTodasModalidades();
+            while(r.Read()){
+                dgvTurma.Rows.Add(r["descricaoModalidade"].ToString());
+            }
+            DAO_Conexao.con.Close();
         }
     }
 }
