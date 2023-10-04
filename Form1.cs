@@ -114,5 +114,17 @@ namespace Estudio
             form8.MdiParent = this;
             form8.Show();
         }
+
+        private void sairToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void cadastrarTurmaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCadTurma frmCadTurma = new FrmCadTurma();
+            frmCadTurma.MdiParent = this;
+            frmCadTurma.Show();
+        }
     }
 }

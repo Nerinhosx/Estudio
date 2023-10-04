@@ -30,6 +30,8 @@ namespace Estudio
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtNumAl = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.txtHora = new System.Windows.Forms.MaskedTextBox();
             this.txtDS = new System.Windows.Forms.TextBox();
             this.txtProf = new System.Windows.Forms.TextBox();
@@ -41,8 +43,6 @@ namespace Estudio
             this.label1 = new System.Windows.Forms.Label();
             this.dgvTurma = new System.Windows.Forms.DataGridView();
             this.modalidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtNumAl = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTurma)).BeginInit();
             this.SuspendLayout();
@@ -66,6 +66,22 @@ namespace Estudio
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Turma";
+            // 
+            // txtNumAl
+            // 
+            this.txtNumAl.Location = new System.Drawing.Point(110, 171);
+            this.txtNumAl.Name = "txtNumAl";
+            this.txtNumAl.Size = new System.Drawing.Size(233, 20);
+            this.txtNumAl.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 174);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(98, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Nº Máx. de Alunos:";
             // 
             // txtHora
             // 
@@ -105,6 +121,7 @@ namespace Estudio
             this.btnCadTurma.TabIndex = 3;
             this.btnCadTurma.Text = "Cadastrar";
             this.btnCadTurma.UseVisualStyleBackColor = true;
+            this.btnCadTurma.Click += new System.EventHandler(this.btnCadTurma_Click);
             // 
             // label4
             // 
@@ -151,27 +168,12 @@ namespace Estudio
             this.dgvTurma.Name = "dgvTurma";
             this.dgvTurma.Size = new System.Drawing.Size(362, 178);
             this.dgvTurma.TabIndex = 1;
+            this.dgvTurma.SelectionChanged += new System.EventHandler(this.dgvTurma_SelectionChanged);
             // 
             // modalidade
             // 
             this.modalidade.HeaderText = "Modalidade";
             this.modalidade.Name = "modalidade";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 174);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(98, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Nº Máx. de Alunos:";
-            // 
-            // txtNumAl
-            // 
-            this.txtNumAl.Location = new System.Drawing.Point(110, 171);
-            this.txtNumAl.Name = "txtNumAl";
-            this.txtNumAl.Size = new System.Drawing.Size(233, 20);
-            this.txtNumAl.TabIndex = 9;
             // 
             // FrmCadTurma
             // 

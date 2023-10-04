@@ -10,19 +10,21 @@ namespace Estudio
     class Turma
     {
         private string professor, dia_da_semana, hora;
-        private int modalidade;
+        private int modalidade, qtdAl;
 
         public int Modalidade { get => modalidade; set => modalidade = value; }
         public string Professor { get => professor; set => professor = value; }
         public string Dia_da_semana { get => dia_da_semana; set => dia_da_semana = value; }
         public string Hora { get => hora; set => hora = value; }
+        public int QtdAl { get => qtdAl; set => qtdAl = value; }
 
-        public Turma(int modalidade, string professor, string dia_da_semana, string hora)
+        public Turma(int modalidade, string professor, string dia_da_semana, string hora, int qtdAl)
         {
             this.modalidade = modalidade;
             this.professor = professor;
             this.dia_da_semana = dia_da_semana;
             this.hora = hora;
+            this.qtdAl = qtdAl;
         }
 
         public Turma(int modalidade, string dia_da_semana)
@@ -41,7 +43,7 @@ namespace Estudio
             bool cad = false;
             try{
                 DAO_Conexao.con.Open();
-                MySqlCommand cadastar = new MySqlCommand("insert into Estudio_Turma (idModalidade, professorTurma, diasemanaTurma, horaTurma) values (" + modalidade + ", '" + professor + "', '" + dia_da_semana + "', '" + hora + "')", DAO_Conexao.con);
+                MySqlCommand cadastar = new MySqlCommand("insert into Estudio_Turma (idModalidade, professorTurma, diasemanaTurma, horaTurma, nalunosmatriculadosTurma) values (" + modalidade + ", '" + professor + "', '" + dia_da_semana + "', '" + hora + "', "+ qtdAl +")", DAO_Conexao.con);
                 cadastar.ExecuteNonQuery();
                 cad = true;
             }
