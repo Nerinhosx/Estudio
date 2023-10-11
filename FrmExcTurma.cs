@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,27 +18,26 @@ namespace Estudio
         {
             InitializeComponent();
 
-            cbxHora.Enabled = false;
-            cbxDS.Enabled = false;
-
-
-            Modalidade con_mod = new Modalidade();
-            MySqlDataReader r = con_mod.consultarTodasModalidades();
-            while (r.Read())
+            Turma t = new Turma();
+            MySqlDataReader result = t.consultarTurmas01();
+            while (result.Read())
             {
-                cbxMod.Items.Add(r["descricaoModalidade"].ToString());
+                cbxMod.Items.Add(result["descricaoModalidade"].ToString());
             }
             DAO_Conexao.con.Close();
-        }
 
-        private void cbxMod_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            cbxHora.Enabled = false;
+            cbxDS.Enabled = false;
         }
 
         private void btnExcTurma_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbxMod_SelectedValueChanged(object sender, EventArgs e)
+        {
+            cbxDS.Enabled = true;
         }
     }
 }

@@ -89,6 +89,7 @@ namespace Estudio
             this.cbxMod.Name = "cbxMod";
             this.cbxMod.Size = new System.Drawing.Size(234, 21);
             this.cbxMod.TabIndex = 3;
+            this.cbxMod.SelectedValueChanged += new System.EventHandler(this.cbxMod_SelectedValueChanged);
             // 
             // label3
             // 

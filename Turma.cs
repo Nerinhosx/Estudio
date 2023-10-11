@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,8 @@ namespace Estudio
             this.modalidade = modalidade;
         }
 
+        public Turma() {}
+
         public bool cadastrarTurma()
         {
             bool cad = false;
@@ -68,12 +71,23 @@ namespace Estudio
         public MySqlDataReader consultarTurma()
         {
             
-        }
-
-        public MySqlDataReader consultarTurma01()
-        {
-
         }*/
+
+        public MySqlDataReader consultarTurmas01()
+        {
+            MySqlDataReader modAtv = null;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand consAtv = new MySqlCommand("select distinct descricaoModalidade from Estudio_Modalidade inner join Estudio_Turma on Estudio_Modalidade.idEstudio_Modalidade = Estudio_Turma.idModalidade", DAO_Conexao.con);
+                modAtv = consAtv.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return modAtv;
+        }
 
         public bool verificaTurma()
         {
@@ -97,5 +111,7 @@ namespace Estudio
             }
             return existe;
         }
+
+
     }
 }

@@ -20,7 +20,7 @@ namespace Estudio
             WindowState = FormWindowState.Maximized;
 
             Modalidade con_mod = new Modalidade();
-            MySqlDataReader r = con_mod.consultarTodasModalidades();
+            MySqlDataReader r = con_mod.consultarModalidadesAtivas();
             while(r.Read()){
                 dgvTurma.Rows.Add(r["descricaoModalidade"].ToString());
             }
