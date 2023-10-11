@@ -19,6 +19,7 @@ namespace Estudio
 
         string descMod;
         string descDia;
+        string descHora;
             
         public FrmExcTurma()
         {
@@ -33,6 +34,7 @@ namespace Estudio
 
             cbxHora.Enabled = false;
             cbxDS.Enabled = false;
+            btnExcTurma.Enabled = false;
         }
 
         private void cbxMod_SelectedValueChanged(object sender, EventArgs e)
@@ -41,6 +43,8 @@ namespace Estudio
             cbxDS.Text = "";
             cbxHora.Items.Clear();
             cbxHora.Text = "";
+
+            btnExcTurma.Enabled = false;
 
             cbxDS.Enabled = true;
 
@@ -58,6 +62,8 @@ namespace Estudio
             cbxHora.Items.Clear();
             cbxHora.Text = "";
 
+            btnExcTurma.Enabled = false;
+
             cbxHora.Enabled = true;
 
             descDia = cbxDS.SelectedItem.ToString();
@@ -67,6 +73,34 @@ namespace Estudio
                 cbxHora.Items.Add(result["horaTurma"].ToString());
             }
             DAO_Conexao.con.Close();
+        }
+
+        private void cbxHora_SelectedValueChanged(object sender, EventArgs e)
+        {
+            descMod = cbxMod.Text;
+            descDia = cbxDS.Text;
+            descHora = cbxHora.Text;
+
+            if(t.verficaTurmaAtiva(descMod, descDia, descHora))
+            {
+                btnExcTurma.Enabled = true;
+            }
+        }
+
+        private void btnExcTurma_Click(object sender, EventArgs e)
+        {
+            descMod = cbxMod.Text;
+            descDia = cbxDS.Text;
+            descHora = cbxHora.Text;
+            
+            if (t.excluirTurma(descMod, descDia, descHora))
+            {
+                MessageBox.Show("Turma excluída com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Exclusão de turma falha.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

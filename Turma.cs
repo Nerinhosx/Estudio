@@ -32,6 +32,7 @@ namespace Estudio
         {
             this.modalidade = modalidade;
             this.dia_da_semana = dia_da_semana;
+            this.hora = hora;
         }
 
         public Turma(int modalidade)
@@ -59,16 +60,87 @@ namespace Estudio
             return cad;
         }
 
-        /*public bool excluirTurma()
+        public bool excluirTurma(string descMod, string DS, string time)
         {
             bool exc = false;
+            int idMod = -1;
+            int idT = 0;
             try{
                 DAO_Conexao.con.Open();
-                MySqlCommand excluir = new MySqlCommand("update Estudio_Turma set ativa = 1 where idModalidade");
+                MySqlCommand consIdMod = new MySqlCommand("select distinct idModalidade from Estudio_Turma inner join Estudio_Modalidade on Estudio_Modalidade.descricaoModalidade = '" + descMod + "' AND Estudio_Turma.ativa = 0", DAO_Conexao.con);
+                MySqlDataReader consIdModReader = consIdMod.ExecuteReader();
+                while (consIdModReader.Read())
+                {
+                    idMod = int.Parse(consIdModReader["idModalidade"].ToString());
+                }
+                DAO_Conexao.con.Close();
+                //====================================================================================
+                DAO_Conexao.con.Open();
+                MySqlCommand consIdTurma = new MySqlCommand("select idEstudio_Turma from Estudio_Turma where idModalidade = " + idMod + " AND diasemanaTurma = '" + DS + "' AND horaTurma = '" + time + "' AND ativa = 0", DAO_Conexao.con);
+                MySqlDataReader consIdTReader = consIdTurma.ExecuteReader();
+                while (consIdTReader.Read())
+                {
+                    idT = int.Parse(consIdTReader["idEstudio_Turma"].ToString());
+                }
+                DAO_Conexao.con.Close();
+                //====================================================================================
+                DAO_Conexao.con.Open();
+                MySqlCommand excT = new MySqlCommand("update Estudio_Turma set ativa = 1 where idEstudio_Turma = " + idT, DAO_Conexao.con);
+                excT.ExecuteNonQuery();
+                exc = true;
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return exc;
         }
 
-        public MySqlDataReader consultarTurma()
+        public bool verficaTurmaAtiva(string descMod, string DS, string time)
+        {
+            bool vTA = false;
+
+            int idMod = -1;
+            MySqlDataReader bsTurmaAtiva = null;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand consIdMod = new MySqlCommand("select distinct idModalidade from Estudio_Turma inner join Estudio_Modalidade where Estudio_Modalidade.descricaoModalidade = '" + descMod + "'", DAO_Conexao.con);
+                MySqlDataReader consIdModReader = consIdMod.ExecuteReader();
+                while (consIdModReader.Read())
+                {
+                    idMod = int.Parse(consIdModReader["idModalidade"].ToString());
+                }
+                DAO_Conexao.con.Close();
+                //=======================================================================================
+                DAO_Conexao.con.Open();
+                MySqlCommand consTurmaAtiv = new MySqlCommand("select ativa from Estudio_Turma where idModalidade = " + idMod + " AND diasemanaTurma = '" + DS + "' AND horaTurma = '" + time + "'", DAO_Conexao.con);
+                bsTurmaAtiva = consTurmaAtiv.ExecuteReader();
+                while (bsTurmaAtiva.Read())
+                {
+                    if(0 == int.Parse(bsTurmaAtiva["ativa"].ToString()))
+                    {
+                        vTA = true;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return vTA;
+        }
+
+        /*public MySqlDataReader consultarTurma()
         {
             
         }*/
