@@ -14,12 +14,17 @@ namespace Estudio
 {
     public partial class FrmExcTurma : Form
     {
+        Turma t = new Turma();
+        MySqlDataReader result;
+
+        string descMod;
+        string descDia;
+            
         public FrmExcTurma()
         {
             InitializeComponent();
 
-            Turma t = new Turma();
-            MySqlDataReader result = t.consultarTurmas01();
+            result = t.consultarModTurmas();
             while (result.Read())
             {
                 cbxMod.Items.Add(result["descricaoModalidade"].ToString());
@@ -30,14 +35,38 @@ namespace Estudio
             cbxDS.Enabled = false;
         }
 
-        private void btnExcTurma_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void cbxMod_SelectedValueChanged(object sender, EventArgs e)
         {
+            cbxDS.Items.Clear();
+            cbxDS.Text = "";
+            cbxHora.Items.Clear();
+            cbxHora.Text = "";
+
             cbxDS.Enabled = true;
+
+            descMod = cbxMod.SelectedItem.ToString();
+            result = t.consultarDiaTurmas(descMod);
+            while (result.Read())
+            {
+                cbxDS.Items.Add(result["diasemanaTurma"].ToString());
+            }
+            DAO_Conexao.con.Close();
+        }
+
+        private void cbxDS_SelectedValueChanged(object sender, EventArgs e)
+        {
+            cbxHora.Items.Clear();
+            cbxHora.Text = "";
+
+            cbxHora.Enabled = true;
+
+            descDia = cbxDS.SelectedItem.ToString();
+            result = t.consultarHoraTurmas(descMod, descDia);
+            while (result.Read())
+            {
+                cbxHora.Items.Add(result["horaTurma"].ToString());
+            }
+            DAO_Conexao.con.Close();
         }
     }
 }

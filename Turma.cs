@@ -73,30 +73,15 @@ namespace Estudio
             
         }*/
 
-        public MySqlDataReader consultarTurmas01()
-        {
-            MySqlDataReader modAtv = null;
-            try
-            {
-                DAO_Conexao.con.Open();
-                MySqlCommand consAtv = new MySqlCommand("select distinct descricaoModalidade from Estudio_Modalidade inner join Estudio_Turma on Estudio_Modalidade.idEstudio_Modalidade = Estudio_Turma.idModalidade", DAO_Conexao.con);
-                modAtv = consAtv.ExecuteReader();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            return modAtv;
-        }
-
         public bool verificaTurma()
         {
             bool existe = false;
-            try{
+            try
+            {
                 DAO_Conexao.con.Open();
                 MySqlCommand ex = new MySqlCommand("select * from Estudio_Turma where idModalidade = " + modalidade + " and diasemanaTurma = '" + dia_da_semana + "' and horaTurma = '" + hora + "'", DAO_Conexao.con);
                 MySqlDataReader exr = ex.ExecuteReader();
-                while(exr.Read())
+                while (exr.Read())
                 {
                     existe = true;
                 }
@@ -112,6 +97,50 @@ namespace Estudio
             return existe;
         }
 
+        public MySqlDataReader consultarModTurmas()
+        {
+            MySqlDataReader modAtv = null;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand consAtv = new MySqlCommand("select distinct descricaoModalidade from Estudio_Modalidade inner join Estudio_Turma on Estudio_Modalidade.idEstudio_Modalidade = Estudio_Turma.idModalidade", DAO_Conexao.con);
+                modAtv = consAtv.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return modAtv;
+        }
 
+        public MySqlDataReader consultarDiaTurmas(string modDesc)
+        {
+            MySqlDataReader diaAtv = null;
+            try{
+                DAO_Conexao.con.Open();
+                MySqlCommand consAtv = new MySqlCommand("select distinct diasemanaTurma from Estudio_Turma inner join Estudio_Modalidade on Estudio_Turma.idModalidade = Estudio_Modalidade.idEstudio_Modalidade AND Estudio_Modalidade.descricaoModalidade = '" + modDesc +"'", DAO_Conexao.con);
+                diaAtv = consAtv.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return diaAtv;
+        }
+
+        public MySqlDataReader consultarHoraTurmas(string modDesc, string diaDesc)
+        {
+            MySqlDataReader horaAtv = null;
+            try{
+                DAO_Conexao.con.Open();
+                MySqlCommand consAtv = new MySqlCommand("select distinct horaTurma from Estudio_Turma inner join Estudio_Modalidade on Estudio_Turma.idModalidade = Estudio_Modalidade.idEstudio_Modalidade AND Estudio_Modalidade.descricaoModalidade = '" + modDesc + "' AND Estudio_Turma.diasemanaTurma = '" + diaDesc + "'", DAO_Conexao.con);
+                horaAtv = consAtv.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return horaAtv;
+        }
     }
 }

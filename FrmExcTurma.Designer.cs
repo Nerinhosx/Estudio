@@ -64,7 +64,6 @@ namespace Estudio
             this.btnExcTurma.TabIndex = 6;
             this.btnExcTurma.Text = "Excluir";
             this.btnExcTurma.UseVisualStyleBackColor = true;
-            this.btnExcTurma.Click += new System.EventHandler(this.btnExcTurma_Click);
             // 
             // cbxHora
             // 
@@ -81,6 +80,7 @@ namespace Estudio
             this.cbxDS.Name = "cbxDS";
             this.cbxDS.Size = new System.Drawing.Size(234, 21);
             this.cbxDS.TabIndex = 4;
+            this.cbxDS.SelectedValueChanged += new System.EventHandler(this.cbxDS_SelectedValueChanged);
             // 
             // cbxMod
             // 
