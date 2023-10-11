@@ -27,11 +27,6 @@ namespace Estudio
             DAO_Conexao.con.Close();
         }
 
-        private void dgvTurma_SelectionChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void btnCadTurma_Click(object sender, EventArgs e)
         {
             int idMod = 0;

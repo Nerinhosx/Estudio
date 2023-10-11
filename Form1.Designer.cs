@@ -41,17 +41,17 @@ namespace Estudio
             this.excluirModalidadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.turmaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastrarTurmaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.excluirTurmaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.turmaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cadastrarTurmaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.excluirTurmaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -154,6 +154,44 @@ namespace Estudio
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
+            // turmaToolStripMenuItem
+            // 
+            this.turmaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cadastrarTurmaToolStripMenuItem,
+            this.excluirTurmaToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.sairToolStripMenuItem1});
+            this.turmaToolStripMenuItem.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.turmaToolStripMenuItem.Name = "turmaToolStripMenuItem";
+            this.turmaToolStripMenuItem.Size = new System.Drawing.Size(58, 21);
+            this.turmaToolStripMenuItem.Text = "Turma";
+            // 
+            // cadastrarTurmaToolStripMenuItem
+            // 
+            this.cadastrarTurmaToolStripMenuItem.Name = "cadastrarTurmaToolStripMenuItem";
+            this.cadastrarTurmaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastrarTurmaToolStripMenuItem.Text = "Cadastrar Turma";
+            this.cadastrarTurmaToolStripMenuItem.Click += new System.EventHandler(this.cadastrarTurmaToolStripMenuItem_Click);
+            // 
+            // excluirTurmaToolStripMenuItem
+            // 
+            this.excluirTurmaToolStripMenuItem.Name = "excluirTurmaToolStripMenuItem";
+            this.excluirTurmaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.excluirTurmaToolStripMenuItem.Text = "Excluir Turma";
+            this.excluirTurmaToolStripMenuItem.Click += new System.EventHandler(this.excluirTurmaToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // sairToolStripMenuItem1
+            // 
+            this.sairToolStripMenuItem1.Name = "sairToolStripMenuItem1";
+            this.sairToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.sairToolStripMenuItem1.Text = "Sair";
+            this.sairToolStripMenuItem1.Click += new System.EventHandler(this.sairToolStripMenuItem1_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.textBox2);
@@ -216,43 +254,6 @@ namespace Estudio
             this.label1.Size = new System.Drawing.Size(44, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Login:";
-            // 
-            // turmaToolStripMenuItem
-            // 
-            this.turmaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cadastrarTurmaToolStripMenuItem,
-            this.excluirTurmaToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.sairToolStripMenuItem1});
-            this.turmaToolStripMenuItem.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.turmaToolStripMenuItem.Name = "turmaToolStripMenuItem";
-            this.turmaToolStripMenuItem.Size = new System.Drawing.Size(58, 21);
-            this.turmaToolStripMenuItem.Text = "Turma";
-            // 
-            // cadastrarTurmaToolStripMenuItem
-            // 
-            this.cadastrarTurmaToolStripMenuItem.Name = "cadastrarTurmaToolStripMenuItem";
-            this.cadastrarTurmaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cadastrarTurmaToolStripMenuItem.Text = "Cadastrar Turma";
-            this.cadastrarTurmaToolStripMenuItem.Click += new System.EventHandler(this.cadastrarTurmaToolStripMenuItem_Click);
-            // 
-            // excluirTurmaToolStripMenuItem
-            // 
-            this.excluirTurmaToolStripMenuItem.Name = "excluirTurmaToolStripMenuItem";
-            this.excluirTurmaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.excluirTurmaToolStripMenuItem.Text = "Excluir Turma";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
-            // 
-            // sairToolStripMenuItem1
-            // 
-            this.sairToolStripMenuItem1.Name = "sairToolStripMenuItem1";
-            this.sairToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.sairToolStripMenuItem1.Text = "Sair";
-            this.sairToolStripMenuItem1.Click += new System.EventHandler(this.sairToolStripMenuItem1_Click);
             // 
             // Form1
             // 

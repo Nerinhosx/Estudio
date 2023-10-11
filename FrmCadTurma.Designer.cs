@@ -169,7 +169,6 @@ namespace Estudio
             this.dgvTurma.Size = new System.Drawing.Size(362, 178);
             this.dgvTurma.TabIndex = 1;
             this.dgvTurma.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurma_CellContentClick);
-            this.dgvTurma.SelectionChanged += new System.EventHandler(this.dgvTurma_SelectionChanged);
             // 
             // modalidade
             // 
