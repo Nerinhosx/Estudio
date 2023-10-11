@@ -43,13 +43,20 @@ namespace Estudio
             }
             DAO_Conexao.con.Close();
             Turma t = new Turma(idMod, prof, dia_sem, hora, qAl);
-            if(t.cadastrarTurma())
+            if (t.verificaTurma() == false)
             {
-                MessageBox.Show("Turma cadastrada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (t.cadastrarTurma())
+                {
+                    MessageBox.Show("Turma cadastrada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Cadastro de turma falho.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
-                MessageBox.Show("Cadastro de turma falho.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Turma com tal modalidade, dias da semana e horário já existente.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

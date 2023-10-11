@@ -81,7 +81,6 @@ namespace Estudio
             this.cbxDS.Name = "cbxDS";
             this.cbxDS.Size = new System.Drawing.Size(234, 21);
             this.cbxDS.TabIndex = 4;
-            this.cbxDS.SelectedIndexChanged += new System.EventHandler(this.cbxDS_SelectedIndexChanged);
             // 
             // cbxMod
             // 

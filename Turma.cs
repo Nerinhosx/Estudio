@@ -74,5 +74,28 @@ namespace Estudio
         {
 
         }*/
+
+        public bool verificaTurma()
+        {
+            bool existe = false;
+            try{
+                DAO_Conexao.con.Open();
+                MySqlCommand ex = new MySqlCommand("select * from Estudio_Turma where idModalidade = " + modalidade + " and diasemanaTurma = '" + dia_da_semana + "' and horaTurma = '" + hora + "'", DAO_Conexao.con);
+                MySqlDataReader exr = ex.ExecuteReader();
+                while(exr.Read())
+                {
+                    existe = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return existe;
+        }
     }
 }
