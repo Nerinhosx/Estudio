@@ -16,6 +16,7 @@ namespace Estudio
         public FrmCadTurma()
         {
             InitializeComponent();
+            txtMod.Enabled = false;
             WindowState = FormWindowState.Maximized;
 
             Modalidade con_mod = new Modalidade();
@@ -55,6 +56,11 @@ namespace Estudio
             {
                 MessageBox.Show("Cadastro de turma falho.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void dgvTurma_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtMod.Text = dgvTurma.CurrentCell.Value.ToString();
         }
     }
 }
