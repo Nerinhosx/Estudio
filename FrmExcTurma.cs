@@ -40,9 +40,9 @@ namespace Estudio
         private void cbxMod_SelectedValueChanged(object sender, EventArgs e)
         {
             cbxDS.Items.Clear();
-            cbxDS.Text = "";
+            cbxDS.Text = null;
             cbxHora.Items.Clear();
-            cbxHora.Text = "";
+            cbxHora.Text = null;
 
             btnExcTurma.Enabled = false;
 
@@ -60,7 +60,7 @@ namespace Estudio
         private void cbxDS_SelectedValueChanged(object sender, EventArgs e)
         {
             cbxHora.Items.Clear();
-            cbxHora.Text = "";
+            cbxHora.Text = null;
 
             btnExcTurma.Enabled = false;
 
@@ -77,11 +77,13 @@ namespace Estudio
 
         private void cbxHora_SelectedValueChanged(object sender, EventArgs e)
         {
-            descMod = cbxMod.Text;
-            descDia = cbxDS.Text;
-            descHora = cbxHora.Text;
+            descMod = cbxMod.SelectedItem.ToString();
+            descDia = cbxDS.SelectedItem.ToString();
+            descHora = cbxHora.SelectedItem.ToString();
 
-            if(t.verficaTurmaAtiva(descMod, descDia, descHora))
+            btnExcTurma.Enabled = false;
+
+            if (t.verficaTurmaAtiva(descMod, descDia, descHora))
             {
                 btnExcTurma.Enabled = true;
             }
@@ -89,10 +91,10 @@ namespace Estudio
 
         private void btnExcTurma_Click(object sender, EventArgs e)
         {
-            descMod = cbxMod.Text;
-            descDia = cbxDS.Text;
-            descHora = cbxHora.Text;
-            
+            descMod = cbxMod.SelectedItem.ToString();
+            descDia = cbxDS.SelectedItem.ToString();
+            descHora = cbxHora.SelectedItem.ToString();
+
             if (t.excluirTurma(descMod, descDia, descHora))
             {
                 MessageBox.Show("Turma excluída com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);

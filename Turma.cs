@@ -67,7 +67,7 @@ namespace Estudio
             int idT = 0;
             try{
                 DAO_Conexao.con.Open();
-                MySqlCommand consIdMod = new MySqlCommand("select distinct idModalidade from Estudio_Turma inner join Estudio_Modalidade on Estudio_Modalidade.descricaoModalidade = '" + descMod + "' AND Estudio_Turma.ativa = 0", DAO_Conexao.con);
+                MySqlCommand consIdMod = new MySqlCommand("select distinct idModalidade from Estudio_Turma inner join Estudio_Modalidade on Estudio_Modalidade.descricaoModalidade = '" + descMod + "' AND Estudio_Modalidade.idEstudio_Modalidade = Estudio_Turma.idModalidade", DAO_Conexao.con);
                 MySqlDataReader consIdModReader = consIdMod.ExecuteReader();
                 while (consIdModReader.Read())
                 {
@@ -76,7 +76,7 @@ namespace Estudio
                 DAO_Conexao.con.Close();
                 //====================================================================================
                 DAO_Conexao.con.Open();
-                MySqlCommand consIdTurma = new MySqlCommand("select idEstudio_Turma from Estudio_Turma where idModalidade = " + idMod + " AND diasemanaTurma = '" + DS + "' AND horaTurma = '" + time + "' AND ativa = 0", DAO_Conexao.con);
+                MySqlCommand consIdTurma = new MySqlCommand("select idEstudio_Turma from Estudio_Turma where idModalidade = " + idMod + " AND diasemanaTurma = '" + DS + "' AND horaTurma = '" + time + "'", DAO_Conexao.con);
                 MySqlDataReader consIdTReader = consIdTurma.ExecuteReader();
                 while (consIdTReader.Read())
                 {
@@ -105,11 +105,10 @@ namespace Estudio
             bool vTA = false;
 
             int idMod = -1;
-            MySqlDataReader bsTurmaAtiva = null;
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand consIdMod = new MySqlCommand("select distinct idModalidade from Estudio_Turma inner join Estudio_Modalidade where Estudio_Modalidade.descricaoModalidade = '" + descMod + "'", DAO_Conexao.con);
+                MySqlCommand consIdMod = new MySqlCommand("select distinct idModalidade from Estudio_Turma inner join Estudio_Modalidade on Estudio_Modalidade.descricaoModalidade = '" + descMod + "' AND Estudio_Modalidade.idEstudio_Modalidade = Estudio_Turma.idModalidade", DAO_Conexao.con);
                 MySqlDataReader consIdModReader = consIdMod.ExecuteReader();
                 while (consIdModReader.Read())
                 {
@@ -119,7 +118,7 @@ namespace Estudio
                 //=======================================================================================
                 DAO_Conexao.con.Open();
                 MySqlCommand consTurmaAtiv = new MySqlCommand("select ativa from Estudio_Turma where idModalidade = " + idMod + " AND diasemanaTurma = '" + DS + "' AND horaTurma = '" + time + "'", DAO_Conexao.con);
-                bsTurmaAtiva = consTurmaAtiv.ExecuteReader();
+                MySqlDataReader bsTurmaAtiva = consTurmaAtiv.ExecuteReader();
                 while (bsTurmaAtiva.Read())
                 {
                     if(0 == int.Parse(bsTurmaAtiva["ativa"].ToString()))
@@ -175,7 +174,7 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand consAtv = new MySqlCommand("select distinct descricaoModalidade from Estudio_Modalidade inner join Estudio_Turma on Estudio_Modalidade.idEstudio_Modalidade = Estudio_Turma.idModalidade", DAO_Conexao.con);
+                MySqlCommand consAtv = new MySqlCommand("select distinct descricaoModalidade from Estudio_Modalidade inner join Estudio_Turma on Estudio_Modalidade.idEstudio_Modalidade = Estudio_Turma.idModalidade AND Estudio_Turma.ativa = 0", DAO_Conexao.con);
                 modAtv = consAtv.ExecuteReader();
             }
             catch (Exception ex)
@@ -190,7 +189,7 @@ namespace Estudio
             MySqlDataReader diaAtv = null;
             try{
                 DAO_Conexao.con.Open();
-                MySqlCommand consAtv = new MySqlCommand("select distinct diasemanaTurma from Estudio_Turma inner join Estudio_Modalidade on Estudio_Turma.idModalidade = Estudio_Modalidade.idEstudio_Modalidade AND Estudio_Modalidade.descricaoModalidade = '" + modDesc +"'", DAO_Conexao.con);
+                MySqlCommand consAtv = new MySqlCommand("select distinct diasemanaTurma from Estudio_Turma inner join Estudio_Modalidade on Estudio_Turma.idModalidade = Estudio_Modalidade.idEstudio_Modalidade AND Estudio_Modalidade.descricaoModalidade = '" + modDesc +"' AND Estudio_Turma.ativa = 0", DAO_Conexao.con);
                 diaAtv = consAtv.ExecuteReader();
             }
             catch (Exception ex)
@@ -205,7 +204,7 @@ namespace Estudio
             MySqlDataReader horaAtv = null;
             try{
                 DAO_Conexao.con.Open();
-                MySqlCommand consAtv = new MySqlCommand("select distinct horaTurma from Estudio_Turma inner join Estudio_Modalidade on Estudio_Turma.idModalidade = Estudio_Modalidade.idEstudio_Modalidade AND Estudio_Modalidade.descricaoModalidade = '" + modDesc + "' AND Estudio_Turma.diasemanaTurma = '" + diaDesc + "'", DAO_Conexao.con);
+                MySqlCommand consAtv = new MySqlCommand("select distinct horaTurma from Estudio_Turma inner join Estudio_Modalidade on Estudio_Turma.idModalidade = Estudio_Modalidade.idEstudio_Modalidade AND Estudio_Modalidade.descricaoModalidade = '" + modDesc + "' AND Estudio_Turma.diasemanaTurma = '" + diaDesc + "' AND Estudio_Turma.ativa = 0", DAO_Conexao.con);
                 horaAtv = consAtv.ExecuteReader();
             }
             catch (Exception ex)
