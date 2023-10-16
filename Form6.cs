@@ -24,13 +24,20 @@ namespace Estudio
             int au = int.Parse(txtAuCadMod.Text);
             Modalidade mod = new Modalidade(txtDescCadMod.Text, prc, al, au);
 
-            if(mod.cadastrarModalidade())
+            if(mod.consultarModalidadeExistente())
             {
-                MessageBox.Show("Modalidade cadastrada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (mod.cadastrarModalidade())
+                {
+                    MessageBox.Show("Modalidade cadastrada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Cadastro de modalidade falho.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
-                MessageBox.Show("Cadastro de modalidade falho.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cadastro de modalidade falho: modalidade com a referida Descrição já cadastrada.", "O sistema infoma:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

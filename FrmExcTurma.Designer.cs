@@ -127,7 +127,7 @@ namespace Estudio
             this.ClientSize = new System.Drawing.Size(364, 202);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmExcTurma";
-            this.Text = "FrmExcTurma";
+            this.Text = "Excluir Turma";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

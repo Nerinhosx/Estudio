@@ -64,6 +64,7 @@ namespace Estudio
                 atualizarModalidadeToolStripMenuItem1.Enabled = false;
                 excluirModalidadeToolStripMenuItem1.Enabled = false;
                 cadastrarTurmaToolStripMenuItem.Enabled = false;
+                atualizarTurmaToolStripMenuItem.Enabled = false;
                 excluirTurmaToolStripMenuItem.Enabled = false;
             }
         }
@@ -157,6 +158,13 @@ namespace Estudio
         private void sairToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void consultarTurmaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmConAtuTurma frmConAtuTurma = new FrmConAtuTurma();
+            frmConAtuTurma.MdiParent = this;
+            frmConAtuTurma.Show();
         }
         //Fim ToolStrip Turma
     }

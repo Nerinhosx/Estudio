@@ -228,17 +228,17 @@ namespace Estudio
             return exc;
         }
 
-        public bool consultarModalidadeExistente(string desc)
+        public bool consultarModalidadeExistente()
         {
             bool ex = true;
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand vExist = new MySqlCommand("Select descricaoModalidade from Estudio_Modalidade");
+                MySqlCommand vExist = new MySqlCommand("Select descricaoModalidade from Estudio_Modalidade", DAO_Conexao.con);
                 MySqlDataReader vE = vExist.ExecuteReader();
                 while(vE.Read())
                 {
-                    if(desc.Equals(vE["descricaoModalidade"].ToString()))
+                    if(Desc == vE["descricaoModalidade"].ToString())
                     {
                         ex = false;
                     }
