@@ -15,6 +15,19 @@ namespace Estudio
         public Form3()
         {
             InitializeComponent();
+
+            txtNome.Enabled = false;
+            txtEnd.Enabled = false;
+            txtNumero.Enabled = false;
+            txtBairro.Enabled = false;
+            txtCompl.Enabled = false;
+            txtCEP.Enabled = false;
+            txtCidade.Enabled = false;
+            txtEstado.Enabled = false;
+            txtTel.Enabled = false;
+            txtEmail.Enabled = false;
+            button1.Enabled = false;
+            button2.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -43,6 +56,18 @@ namespace Estudio
                 }
                 else
                 {
+                    txtNome.Enabled = true;
+                    txtEnd.Enabled = true;
+                    txtNumero.Enabled = true;
+                    txtBairro.Enabled = true;
+                    txtCompl.Enabled = true;
+                    txtCEP.Enabled = true;
+                    txtCidade.Enabled = true;
+                    txtEstado.Enabled = true;
+                    txtTel.Enabled = true;
+                    txtEmail.Enabled = true;
+                    button1.Enabled = true;
+                    button2.Enabled = true;
                     txtNome.Focus();
                 }
                 DAO_Conexao.con.Close();

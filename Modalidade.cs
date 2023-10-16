@@ -227,5 +227,33 @@ namespace Estudio
             }
             return exc;
         }
+
+        public bool consultarModalidadeExistente(string desc)
+        {
+            bool ex = true;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand vExist = new MySqlCommand("Select descricaoModalidade from Estudio_Modalidade");
+                MySqlDataReader vE = vExist.ExecuteReader();
+                while(vE.Read())
+                {
+                    if(desc.Equals(vE["descricaoModalidade"].ToString()))
+                    {
+                        ex = false;
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return ex;
+        }
     }
 }

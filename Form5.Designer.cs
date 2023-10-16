@@ -307,7 +307,7 @@ namespace Estudio
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form5";
-            this.Text = "Atualizar Cadastro";
+            this.Text = "Atualizar Aluno";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

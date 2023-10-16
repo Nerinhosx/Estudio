@@ -13,7 +13,8 @@ namespace Estudio
 {
     public partial class Form5 : Form
     {
-        public Form5()
+        int option;
+        public Form5(int op)
         {
             InitializeComponent();
             txtNome.Enabled = false;
@@ -27,6 +28,17 @@ namespace Estudio
             txtTel.Enabled = false;
             txtEmail.Enabled = false;
             btnAtualizar.Enabled = false;
+            button1.Enabled = false;
+
+            option = op;
+
+            if(option == 0)
+            {
+                button1.Visible = false;
+                btnAtualizar.Visible = false;
+                pictureBox1.Visible = false;
+                groupBox1.Text = "Consulta";
+            }
         }
 
         private void btnAtualizar_Click(object sender, EventArgs e)
@@ -48,42 +60,87 @@ namespace Estudio
             Aluno aluno = new Aluno(txtCPF.Text);
             if (e.KeyChar == 13)
             {
-                if(aluno.consultarAluno())
+                if(option == 1)
                 {
-                    DAO_Conexao.con.Close();
-                    txtNome.Enabled = true;
-                    txtEnd.Enabled = true;
-                    txtNumero.Enabled = true;
-                    txtBairro.Enabled = true;
-                    txtComp.Enabled = true;
-                    txtCEP.Enabled = true;
-                    txtCidade.Enabled = true;
-                    txtEstado.Enabled = true;
-                    txtTel.Enabled = true;
-                    txtEmail.Enabled = true;
-                    btnAtualizar.Enabled = true;
-                    txtCPF.Enabled = false;
-
-                    MySqlDataReader r = aluno.buscarDadosAluno();
-                    if (r.Read())
+                    if (aluno.consultarAluno())
                     {
-                        txtNome.Text = r["nomeAluno"].ToString();
-                        txtEnd.Text = r["ruaAluno"].ToString();
-                        txtNumero.Text = r["numeroAluno"].ToString();
-                        txtBairro.Text = r["bairroAluno"].ToString();
-                        txtComp.Text = r["complementoAluno"].ToString();
-                        txtCEP.Text = r["CEPAluno"].ToString();
-                        txtCidade.Text = r["cidadeAluno"].ToString();
-                        txtEstado.Text = r["estadoAluno"].ToString();
-                        txtTel.Text = r["telefoneAluno"].ToString();
-                        txtEmail.Text = r["emailAluno"].ToString();
+                        DAO_Conexao.con.Close();
+                        txtNome.Enabled = true;
+                        txtEnd.Enabled = true;
+                        txtNumero.Enabled = true;
+                        txtBairro.Enabled = true;
+                        txtComp.Enabled = true;
+                        txtCEP.Enabled = true;
+                        txtCidade.Enabled = true;
+                        txtEstado.Enabled = true;
+                        txtTel.Enabled = true;
+                        txtEmail.Enabled = true;
+                        btnAtualizar.Enabled = true;
+                        button1.Enabled = true;
+                        txtCPF.Enabled = false;
+
+                        MySqlDataReader r = aluno.buscarDadosAluno();
+                        if (r.Read())
+                        {
+                            txtNome.Text = r["nomeAluno"].ToString();
+                            txtEnd.Text = r["ruaAluno"].ToString();
+                            txtNumero.Text = r["numeroAluno"].ToString();
+                            txtBairro.Text = r["bairroAluno"].ToString();
+                            txtComp.Text = r["complementoAluno"].ToString();
+                            txtCEP.Text = r["CEPAluno"].ToString();
+                            txtCidade.Text = r["cidadeAluno"].ToString();
+                            txtEstado.Text = r["estadoAluno"].ToString();
+                            txtTel.Text = r["telefoneAluno"].ToString();
+                            txtEmail.Text = r["emailAluno"].ToString();
+                        }
+                        DAO_Conexao.con.Close();
                     }
-                    DAO_Conexao.con.Close();
+                    else
+                    {
+                        DAO_Conexao.con.Close();
+                        MessageBox.Show("Impossível prosseguir com atualização: aluno não cadastrado.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                else
+                else if(option == 0)
                 {
-                    DAO_Conexao.con.Close();
-                    MessageBox.Show("Impossível prosseguir com atualização: aluno não cadastrado.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (aluno.consultarAluno())
+                    {
+                        DAO_Conexao.con.Close();
+                        txtNome.Enabled = false;
+                        txtEnd.Enabled = false;
+                        txtNumero.Enabled = false;
+                        txtBairro.Enabled = false;
+                        txtComp.Enabled = false;
+                        txtCEP.Enabled = false;
+                        txtCidade.Enabled = false;
+                        txtEstado.Enabled = false;
+                        txtTel.Enabled = false;
+                        txtEmail.Enabled = false;
+                        btnAtualizar.Enabled = false;
+                        button1.Enabled = false;
+                        txtCPF.Enabled = false;
+
+                        MySqlDataReader r = aluno.buscarDadosAluno();
+                        if (r.Read())
+                        {
+                            txtNome.Text = r["nomeAluno"].ToString();
+                            txtEnd.Text = r["ruaAluno"].ToString();
+                            txtNumero.Text = r["numeroAluno"].ToString();
+                            txtBairro.Text = r["bairroAluno"].ToString();
+                            txtComp.Text = r["complementoAluno"].ToString();
+                            txtCEP.Text = r["CEPAluno"].ToString();
+                            txtCidade.Text = r["cidadeAluno"].ToString();
+                            txtEstado.Text = r["estadoAluno"].ToString();
+                            txtTel.Text = r["telefoneAluno"].ToString();
+                            txtEmail.Text = r["emailAluno"].ToString();
+                        }
+                        DAO_Conexao.con.Close();
+                    }
+                    else
+                    {
+                        DAO_Conexao.con.Close();
+                        MessageBox.Show("Impossível prosseguir com a consulta: aluno não cadastrado.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
         }

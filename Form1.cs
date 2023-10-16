@@ -27,11 +27,7 @@ namespace Estudio
                 Console.WriteLine("Erro de Conexão");
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        //Início ToolStrip Login
         private void cadastrarLoginToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
@@ -43,6 +39,7 @@ namespace Estudio
         {
             Application.Exit();
         }
+        //Fim ToolStrip Login
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -63,9 +60,15 @@ namespace Estudio
                 groupBox1.Visible = false;
                 menuStrip1.Enabled = true;
                 cadastrarLoginToolStripMenuItem.Enabled = false;
+                cadastrarModalidadeToolStripMenuItem1.Enabled = false;
+                atualizarModalidadeToolStripMenuItem1.Enabled = false;
+                excluirModalidadeToolStripMenuItem1.Enabled = false;
+                cadastrarTurmaToolStripMenuItem.Enabled = false;
+                excluirTurmaToolStripMenuItem.Enabled = false;
             }
         }
 
+        //Início ToolStrip Aluno
         private void cadastrarAlunoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form3 form3 = new Form3();
@@ -73,53 +76,70 @@ namespace Estudio
             form3.Show();
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        private void consultarAlunoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form5 form5 = new Form5(0);
+            form5.MdiParent = this;
+            form5.Text = "Consultar Aluno";
+            form5.Show();
+        }
+
+        private void atualizarAlunoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form5 form5 = new Form5(1);
+            form5.MdiParent = this;
+            form5.Show();
+        }
+
+        private void excluirAlunoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form4 form4 = new Form4();
             form4.MdiParent = this;
             form4.Show();
         }
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        private void sairToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            Form5 form5 = new Form5();
-            form5.MdiParent = this;
-            form5.Show();
+            Application.Exit();
         }
+        //Fim ToolStrip Aluno
 
-        private void cadastrarModalidadeToolStripMenuItem_Click(object sender, EventArgs e)
+        //Início toolStrip Modalidade
+        private void cadastrarModalidadeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Form6 form6 = new Form6();
             form6.MdiParent = this;
             form6.Show();
         }
 
-        private void excluirModalidadeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form7 form7 = new Form7();
-            form7.MdiParent = this;
-            form7.Show();
-        }
-
-        private void consultarModalidadeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void consultarModalidadeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Form8 form8 = new Form8(0);
             form8.MdiParent = this;
             form8.Show();
         }
 
-        private void atualizarModalidadeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void atualizarModalidadeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Form8 form8 = new Form8(1);
             form8.MdiParent = this;
             form8.Show();
         }
 
-        private void sairToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void excluirModalidadeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form7 form7 = new Form7();
+            form7.MdiParent = this;
+            form7.Show();
+        }
+
+        private void sairToolStripMenuItem3_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+        //Fim ToolStrip Modalidade
 
+        //Início ToolStrip Turma
         private void cadastrarTurmaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCadTurma frmCadTurma = new FrmCadTurma();
@@ -133,5 +153,11 @@ namespace Estudio
             frmExcTurma.MdiParent = this;
             frmExcTurma.Show();
         }
+
+        private void sairToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        //Fim ToolStrip Turma
     }
 }
