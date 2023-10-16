@@ -154,6 +154,14 @@ namespace Estudio
         private void btnAtivar_Click(object sender, EventArgs e)
         {
             Aluno al = new Aluno(txtCPF.Text);
+            if(al.ativar())
+            {
+                MessageBox.Show("Aluno reativado com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Falha na reativação.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

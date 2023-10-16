@@ -208,6 +208,27 @@ namespace Estudio
             return inAtv;
         }
 
+        public bool ativar()
+        {
+            bool reativ = false;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand reA = new MySqlCommand("update Estudio_Aluno set ativo = 0 where CPFAluno = '" + CPF + "'", DAO_Conexao.con);
+                MySqlDataReader exReA = reA.ExecuteReader();
+                reativ = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return reativ;
+        }
+
         public string getCPF()
         {
             return CPF;
