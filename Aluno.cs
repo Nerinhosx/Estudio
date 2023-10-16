@@ -178,11 +178,34 @@ namespace Estudio
             {
                 Console.WriteLine(ex.ToString());
             }
+            return result;
+        }
+
+        public bool verificaInativo()
+        {
+            bool inAtv = false;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand verIn = new MySqlCommand("select ativo from Estudio_Aluno where CPFAluno = '"+ CPF +"'", DAO_Conexao.con);
+                MySqlDataReader exVerIn = verIn.ExecuteReader();
+                while(exVerIn.Read())
+                {
+                    if(int.Parse(exVerIn["ativo"].ToString()) == 1)
+                    {
+                        inAtv = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
             finally
             {
-                //DAO_Conexao.con.Close();
+                DAO_Conexao.con.Close();
             }
-            return result;
+            return inAtv;
         }
 
         public string getCPF()

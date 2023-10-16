@@ -29,6 +29,7 @@ namespace Estudio
             txtEmail.Enabled = false;
             btnAtualizar.Enabled = false;
             button1.Enabled = false;
+            btnAtivar.Enabled = false;
 
             option = op;
 
@@ -37,6 +38,7 @@ namespace Estudio
                 button1.Visible = false;
                 btnAtualizar.Visible = false;
                 pictureBox1.Visible = false;
+                btnAtivar.Visible = false;
                 groupBox1.Text = "Consulta";
             }
         }
@@ -94,6 +96,10 @@ namespace Estudio
                             txtEmail.Text = r["emailAluno"].ToString();
                         }
                         DAO_Conexao.con.Close();
+                        if(aluno.verificaInativo())
+                        {
+                            btnAtivar.Enabled = true;
+                        }
                     }
                     else
                     {
@@ -143,6 +149,11 @@ namespace Estudio
                     }
                 }
             }
+        }
+
+        private void btnAtivar_Click(object sender, EventArgs e)
+        {
+            Aluno al = new Aluno(txtCPF.Text);
         }
     }
 }

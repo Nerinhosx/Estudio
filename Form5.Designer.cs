@@ -30,6 +30,7 @@ namespace Estudio
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnAtivar = new System.Windows.Forms.Button();
             this.btnAtualizar = new System.Windows.Forms.Button();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.txtComp = new System.Windows.Forms.TextBox();
@@ -61,6 +62,7 @@ namespace Estudio
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnAtivar);
             this.groupBox1.Controls.Add(this.btnAtualizar);
             this.groupBox1.Controls.Add(this.txtNumero);
             this.groupBox1.Controls.Add(this.txtComp);
@@ -91,11 +93,21 @@ namespace Estudio
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados para Atualização";
             // 
+            // btnAtivar
+            // 
+            this.btnAtivar.Location = new System.Drawing.Point(280, 193);
+            this.btnAtivar.Name = "btnAtivar";
+            this.btnAtivar.Size = new System.Drawing.Size(212, 23);
+            this.btnAtivar.TabIndex = 23;
+            this.btnAtivar.Text = "Tornar ativo";
+            this.btnAtivar.UseVisualStyleBackColor = true;
+            this.btnAtivar.Click += new System.EventHandler(this.btnAtivar_Click);
+            // 
             // btnAtualizar
             // 
             this.btnAtualizar.Location = new System.Drawing.Point(18, 193);
             this.btnAtualizar.Name = "btnAtualizar";
-            this.btnAtualizar.Size = new System.Drawing.Size(474, 23);
+            this.btnAtualizar.Size = new System.Drawing.Size(238, 23);
             this.btnAtualizar.TabIndex = 22;
             this.btnAtualizar.Text = "Atualizar";
             this.btnAtualizar.UseVisualStyleBackColor = true;
@@ -343,5 +355,6 @@ namespace Estudio
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAtivar;
     }
 }
