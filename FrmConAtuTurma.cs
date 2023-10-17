@@ -19,13 +19,15 @@ namespace Estudio
             InitializeComponent();
 
             option = op;
+            txtMod.Enabled = false;
+            btnAtv.Enabled = false;
 
-            if(option == 0)
+            if (option == 0)
             {
-                txtMod.Enabled = false;
                 txtProf.Enabled = false;
                 txtDS.Enabled = false;
                 txtHora.Enabled = false;
+                txtAl.Enabled = false;
                 btnAtz.Enabled = false;
                 btnAtz.Visible = false;
                 btnAtv.Enabled = false;
@@ -64,6 +66,7 @@ namespace Estudio
             txtProf.Text = dgvTurma[2, line].Value.ToString();
             txtDS.Text = dgvTurma[3, line].Value.ToString();
             txtHora.Text = dgvTurma[4, line].Value.ToString();
+            txtAl.Text = dgvTurma[5, line].Value.ToString();
             if(option == 1)
             {
                 Turma t = new Turma();
@@ -78,10 +81,28 @@ namespace Estudio
             }
         }
 
+        private void btnAtz_Click(object sender, EventArgs e)
+        {
+            int idT = int.Parse(dgvTurma[0, line].Value.ToString());
+            string prof = txtProf.Text;
+            string ds = txtDS.Text;
+            string hora = txtHora.Text;
+            int qAl = int.Parse(txtAl.Text);
+            Turma t = new Turma();
+            if(t.atualizarTurma(idT, prof, ds, hora, qAl))
+            {
+                MessageBox.Show("Turma atualizada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Falha na atualização da turma.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnAtv_Click(object sender, EventArgs e)
         {
             Turma t = new Turma();
-            if(t.atualizarTurma(int.Parse(dgvTurma[0, line].Value.ToString())))
+            if(t.ativarTurma(int.Parse(dgvTurma[0, line].Value.ToString())))
             {
                 MessageBox.Show("Turma reativada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

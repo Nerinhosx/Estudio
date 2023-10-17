@@ -268,13 +268,34 @@ namespace Estudio
             return inatv;
         }
 
-        public bool atualizarTurma(int idT)
+        public bool ativarTurma(int idT)
+        {
+            bool at = false;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand atz = new MySqlCommand("update Estudio_Turma set ativa = 0 where idEstudio_Turma = " + idT, DAO_Conexao.con);
+                atz.ExecuteNonQuery();
+                at = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return at;
+        }
+
+        public bool atualizarTurma(int idT, string prof, string ds, string h, int al)
         {
             bool az = false;
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand atz = new MySqlCommand("update Estudio_Turma set ativa = 0 where idEstudio_Turma = " + idT, DAO_Conexao.con);
+                MySqlCommand atz = new MySqlCommand("update Estudio_Turma set professorTurma = '" + prof + "', diasemanaTurma = '" + ds + "', horaTurma = '" + h + "', nalunosmatriculadosTurma = " + al + " where idEstudio_Turma = "+ idT, DAO_Conexao.con);
                 atz.ExecuteNonQuery();
                 az = true;
             }
