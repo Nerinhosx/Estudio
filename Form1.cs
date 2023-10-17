@@ -171,6 +171,7 @@ namespace Estudio
         {
             FrmConAtuTurma frmConAtuTurma = new FrmConAtuTurma(1);
             frmConAtuTurma.MdiParent = this;
+            frmConAtuTurma.Text = "Atualizar Turma";
             frmConAtuTurma.Show();
         }
         //Fim ToolStrip Turma
