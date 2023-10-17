@@ -240,5 +240,53 @@ namespace Estudio
             }
             return horaAtv;
         }
+
+        public bool verificaTurmaInativa(int idT)
+        {
+            bool inatv = false;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand vAtv = new MySqlCommand("select ativa from Estudio_Turma where idEstudio_Turma = " + idT, DAO_Conexao.con);
+                MySqlDataReader exVAtv = vAtv.ExecuteReader();
+                while (exVAtv.Read())
+                {
+                    if (int.Parse(exVAtv["ativa"].ToString()) == 1)
+                    {
+                        inatv = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return inatv;
+        }
+
+        public bool atualizarTurma(int idT)
+        {
+            bool az = false;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand atz = new MySqlCommand("update Estudio_Turma set ativa = 0 where idEstudio_Turma = " + idT, DAO_Conexao.con);
+                atz.ExecuteNonQuery();
+                az = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return az;
+        }
     }
 }

@@ -167,6 +167,7 @@ namespace Estudio
             this.btnAtv.TabIndex = 9;
             this.btnAtv.Text = "Tornar ativo";
             this.btnAtv.UseVisualStyleBackColor = true;
+            this.btnAtv.Click += new System.EventHandler(this.btnAtv_Click);
             // 
             // id
             // 

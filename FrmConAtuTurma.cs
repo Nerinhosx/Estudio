@@ -13,7 +13,7 @@ namespace Estudio
 {
     public partial class FrmConAtuTurma : Form
     {
-        int option;
+        int option, line;
         public FrmConAtuTurma(int op)
         {
             InitializeComponent();
@@ -59,12 +59,36 @@ namespace Estudio
 
         private void dgvTurma_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int line;
             line = int.Parse(dgvTurma.CurrentRow.Index.ToString());
             txtMod.Text = dgvTurma[1, line].Value.ToString();
             txtProf.Text = dgvTurma[2, line].Value.ToString();
             txtDS.Text = dgvTurma[3, line].Value.ToString();
             txtHora.Text = dgvTurma[4, line].Value.ToString();
+            if(option == 1)
+            {
+                Turma t = new Turma();
+                if(t.verificaTurmaInativa(int.Parse(dgvTurma[0, line].Value.ToString())))
+                {
+                    btnAtv.Enabled = true;
+                }
+                else
+                {
+                    btnAtv.Enabled = false;
+                }
+            }
+        }
+
+        private void btnAtv_Click(object sender, EventArgs e)
+        {
+            Turma t = new Turma();
+            if(t.atualizarTurma(int.Parse(dgvTurma[0, line].Value.ToString())))
+            {
+                MessageBox.Show("Turma reativada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Falha na reativação da turma.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
