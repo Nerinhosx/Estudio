@@ -162,7 +162,14 @@ namespace Estudio
 
         private void consultarTurmaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FrmConAtuTurma frmConAtuTurma = new FrmConAtuTurma();
+            FrmConAtuTurma frmConAtuTurma = new FrmConAtuTurma(0);
+            frmConAtuTurma.MdiParent = this;
+            frmConAtuTurma.Show();
+        }
+
+        private void atualizarTurmaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmConAtuTurma frmConAtuTurma = new FrmConAtuTurma(1);
             frmConAtuTurma.MdiParent = this;
             frmConAtuTurma.Show();
         }

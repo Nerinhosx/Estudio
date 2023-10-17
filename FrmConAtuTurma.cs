@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,58 @@ namespace Estudio
 {
     public partial class FrmConAtuTurma : Form
     {
-        public FrmConAtuTurma()
+        int option;
+        public FrmConAtuTurma(int op)
         {
             InitializeComponent();
+
+            option = op;
+
+            if(option == 0)
+            {
+                txtMod.Enabled = false;
+                txtProf.Enabled = false;
+                txtDS.Enabled = false;
+                txtHora.Enabled = false;
+                btnAtz.Enabled = false;
+                btnAtz.Visible = false;
+                btnAtv.Enabled = false;
+                btnAtv.Visible = false;
+            }
+
+            Turma t = new Turma();
+            MySqlDataReader consTA = null;
+            if (option == 0)
+            {
+                consTA = t.consultarTurmasAtivasAtualizar();
+            }
+            else if(option == 1)
+            {
+                consTA = t.consultarTurmasAtualizar();
+            }
+
+            while(consTA.Read())
+            {
+                int idT = int.Parse(consTA["idEstudio_Turma"].ToString());
+                string descM = consTA["descricaoModalidade"].ToString();
+                string prof = consTA["professorTurma"].ToString();
+                string ds = consTA["diasemanaTurma"].ToString();
+                string hora = consTA["horaTurma"].ToString();
+                int qtdAl = int.Parse(consTA["nalunosmatriculadosTurma"].ToString());
+
+                dgvTurma.Rows.Add(idT, descM, prof, ds, hora, qtdAl);
+            }
+            DAO_Conexao.con.Close();
+        }
+
+        private void dgvTurma_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int line;
+            line = int.Parse(dgvTurma.CurrentRow.Index.ToString());
+            txtMod.Text = dgvTurma[1, line].Value.ToString();
+            txtProf.Text = dgvTurma[2, line].Value.ToString();
+            txtDS.Text = dgvTurma[3, line].Value.ToString();
+            txtHora.Text = dgvTurma[4, line].Value.ToString();
         }
     }
 }

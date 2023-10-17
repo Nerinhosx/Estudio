@@ -255,5 +255,29 @@ namespace Estudio
             }
             return ex;
         }
+
+        public string consultarDescPorId(int id)
+        {
+            string desc = null;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand cDI = new MySqlCommand("select descricaoModalidade from Estudio_Modalidade where idEstudio_Modalidade =" + id, DAO_Conexao.con);
+                MySqlDataReader exCDI = cDI.ExecuteReader();
+                while(exCDI.Read())
+                {
+                    desc = exCDI["descricaoModalidade"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return desc;
+        }
     }
 }

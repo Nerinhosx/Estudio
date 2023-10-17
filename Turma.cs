@@ -139,10 +139,37 @@ namespace Estudio
             return vTA;
         }
 
-        /*public MySqlDataReader consultarTurma()
+        public MySqlDataReader consultarTurmasAtivasAtualizar()
         {
-            
-        }*/
+            MySqlDataReader exAllAtv = null;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand allAtv = new MySqlCommand("select idEstudio_Turma, Estudio_Modalidade.descricaoModalidade, professorTurma, diasemanaTurma, horaTurma, nalunosmatriculadosTurma from Estudio_Turma inner join Estudio_Modalidade on Estudio_Turma.ativa = 0 AND Estudio_Turma.idModalidade = Estudio_Modalidade.idEstudio_Modalidade", DAO_Conexao.con);
+                exAllAtv = allAtv.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return exAllAtv;
+        }
+
+        public MySqlDataReader consultarTurmasAtualizar()
+        {
+            MySqlDataReader exAllAtv = null;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand allAtv = new MySqlCommand("select idEstudio_Turma, Estudio_Modalidade.descricaoModalidade, professorTurma, diasemanaTurma, horaTurma, nalunosmatriculadosTurma from Estudio_Turma inner join Estudio_Modalidade on Estudio_Turma.idModalidade = Estudio_Modalidade.idEstudio_Modalidade", DAO_Conexao.con);
+                exAllAtv = allAtv.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return exAllAtv;
+        }
 
         public bool verificaTurma()
         {
