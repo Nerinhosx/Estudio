@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aluno.cs" />
+    <Compile Include="AlunoEmTurma.cs" />
     <Compile Include="DAO_Conexao.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
