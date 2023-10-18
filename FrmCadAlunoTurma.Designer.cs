@@ -30,13 +30,13 @@ namespace Estudio
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtCPF = new System.Windows.Forms.MaskedTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnCad = new System.Windows.Forms.Button();
             this.dgvTurma = new System.Windows.Forms.DataGridView();
             this.modalidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diaSemana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnCad = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCPF = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTurma)).BeginInit();
             this.SuspendLayout();
@@ -49,28 +49,20 @@ namespace Estudio
             this.groupBox1.Controls.Add(this.txtCPF);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(362, 267);
+            this.groupBox1.Size = new System.Drawing.Size(383, 314);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Aluno/Turma";
             // 
-            // txtCPF
+            // btnCad
             // 
-            this.txtCPF.Location = new System.Drawing.Point(87, 23);
-            this.txtCPF.Mask = "000.000.000-00";
-            this.txtCPF.Name = "txtCPF";
-            this.txtCPF.Size = new System.Drawing.Size(84, 20);
-            this.txtCPF.TabIndex = 0;
-            this.txtCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCPF_KeyPress);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "CPF do Aluno:";
+            this.btnCad.Location = new System.Drawing.Point(9, 279);
+            this.btnCad.Name = "btnCad";
+            this.btnCad.Size = new System.Drawing.Size(368, 29);
+            this.btnCad.TabIndex = 3;
+            this.btnCad.Text = "Cadastrar";
+            this.btnCad.UseVisualStyleBackColor = true;
+            this.btnCad.Click += new System.EventHandler(this.btnCad_Click);
             // 
             // dgvTurma
             // 
@@ -81,7 +73,7 @@ namespace Estudio
             this.hora});
             this.dgvTurma.Location = new System.Drawing.Point(9, 63);
             this.dgvTurma.Name = "dgvTurma";
-            this.dgvTurma.Size = new System.Drawing.Size(347, 150);
+            this.dgvTurma.Size = new System.Drawing.Size(368, 210);
             this.dgvTurma.TabIndex = 2;
             // 
             // modalidade
@@ -99,21 +91,29 @@ namespace Estudio
             this.hora.HeaderText = "Horário";
             this.hora.Name = "hora";
             // 
-            // btnCad
+            // label1
             // 
-            this.btnCad.Location = new System.Drawing.Point(9, 232);
-            this.btnCad.Name = "btnCad";
-            this.btnCad.Size = new System.Drawing.Size(347, 29);
-            this.btnCad.TabIndex = 3;
-            this.btnCad.Text = "Cadastrar";
-            this.btnCad.UseVisualStyleBackColor = true;
-            this.btnCad.Click += new System.EventHandler(this.btnCad_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "CPF do Aluno:";
+            // 
+            // txtCPF
+            // 
+            this.txtCPF.Location = new System.Drawing.Point(87, 23);
+            this.txtCPF.Mask = "000.000.000-00";
+            this.txtCPF.Name = "txtCPF";
+            this.txtCPF.Size = new System.Drawing.Size(84, 20);
+            this.txtCPF.TabIndex = 0;
+            this.txtCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCPF_KeyPress);
             // 
             // FrmCadAlunoTurma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(387, 292);
+            this.ClientSize = new System.Drawing.Size(409, 339);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmCadAlunoTurma";
             this.Text = "Cadastrar Aluno em Turma";
