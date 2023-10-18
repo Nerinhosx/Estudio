@@ -109,6 +109,12 @@
     <Compile Include="Form8.Designer.cs">
       <DependentUpon>Form8.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCadAlunoTurma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCadAlunoTurma.Designer.cs">
+      <DependentUpon>FrmCadAlunoTurma.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCadTurma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form8.resx">
       <DependentUpon>Form8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCadAlunoTurma.resx">
+      <DependentUpon>FrmCadAlunoTurma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCadTurma.resx">
       <DependentUpon>FrmCadTurma.cs</DependentUpon>
