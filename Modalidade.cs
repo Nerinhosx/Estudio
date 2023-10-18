@@ -228,6 +228,21 @@ namespace Estudio
             return exc;
         }
 
+        public void desativaTurmaPorModalidade(int id)
+        {
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand des = new MySqlCommand("update Estudio_Turma set ativa = 1 where idModalidade =" + id, DAO_Conexao.con);
+                des.ExecuteNonQuery();
+                DAO_Conexao.con.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
         public bool consultarModalidadeExistente()
         {
             bool ex = true;
@@ -278,6 +293,30 @@ namespace Estudio
                 DAO_Conexao.con.Close();
             }
             return desc;
+        }
+
+        public int consultarIdPorDesc(string desc)
+        {
+            int id = -1;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand iDC = new MySqlCommand("select idEstudio_Modalidade from Estudio_Modalidade where descricaoModalidade = '" + desc +"'", DAO_Conexao.con);
+                MySqlDataReader exIDC = iDC.ExecuteReader();
+                while (exIDC.Read())
+                {
+                    id = int.Parse(exIDC["idEstudio_Modalidade"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return id;
         }
     }
 }

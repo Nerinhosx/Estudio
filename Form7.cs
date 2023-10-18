@@ -33,6 +33,9 @@ namespace Estudio
             if(m.excluirModalidade())
             {
                 MessageBox.Show("Modalidade excluída com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                int id = m.consultarIdPorDesc(comboBox1.Text);
+                Console.WriteLine(id);
+                m.desativaTurmaPorModalidade(id);
             }
             else
             {
