@@ -16,6 +16,9 @@ namespace Estudio
         public FrmCadAlunoTurma()
         {
             InitializeComponent();
+
+            dgvTurma.Enabled = false;
+            btnCad.Enabled = false;
         }
 
         private void btnCad_Click(object sender, EventArgs e)
@@ -39,6 +42,7 @@ namespace Estudio
                         string h = r["horaTurma"].ToString();
                         dgvTurma.Rows.Add(mod, ds, h);
                     }
+                    dgvTurma.Enabled = true;
                 }
                 else
                 {

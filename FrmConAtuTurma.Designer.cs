@@ -37,6 +37,8 @@ namespace Estudio
             this.hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nMaxAl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtAl = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnAtv = new System.Windows.Forms.Button();
             this.btnAtz = new System.Windows.Forms.Button();
             this.txtHora = new System.Windows.Forms.TextBox();
@@ -47,8 +49,6 @@ namespace Estudio
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtAl = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTurma)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -119,6 +119,22 @@ namespace Estudio
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Turma";
+            // 
+            // txtAl
+            // 
+            this.txtAl.Location = new System.Drawing.Point(467, 82);
+            this.txtAl.Name = "txtAl";
+            this.txtAl.Size = new System.Drawing.Size(71, 20);
+            this.txtAl.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(368, 85);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Nº máx de alunos:";
             // 
             // btnAtv
             // 
@@ -203,22 +219,6 @@ namespace Estudio
             this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Modalidade:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(368, 85);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Nº máx de alunos:";
-            // 
-            // txtAl
-            // 
-            this.txtAl.Location = new System.Drawing.Point(467, 82);
-            this.txtAl.Name = "txtAl";
-            this.txtAl.Size = new System.Drawing.Size(71, 20);
-            this.txtAl.TabIndex = 11;
             // 
             // FrmConAtuTurma
             // 
