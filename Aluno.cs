@@ -80,7 +80,7 @@ namespace Estudio
             }
             finally
             {
-                //DAO_Conexao.con.Close();
+                DAO_Conexao.con.Close();
             }
             return existe;
         }
@@ -109,11 +109,12 @@ namespace Estudio
         public bool verificaCPF()
         {
             int soma, resto, cont = 0;
+            string cpf;
             soma = 0;
 
-            CPF = CPF.Trim();
-            CPF = CPF.Replace(".", "");
-            CPF = CPF.Replace("-", "");
+            cpf = CPF.Trim();
+            cpf = CPF.Replace(".", "");
+            cpf = CPF.Replace("-", "");
 
             for (cont = 0; cont <= 11; cont++)
             {

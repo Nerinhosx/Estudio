@@ -175,5 +175,20 @@ namespace Estudio
             frmConAtuTurma.Show();
         }
         //Fim ToolStrip Turma
+
+        //Início ToolStrip Aluno -> Turma
+        private void sairToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void matricularAlunoEmTurmaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCadAlunoTurma frmCadAlunoTurma = new FrmCadAlunoTurma();
+            frmCadAlunoTurma.MdiParent = this;
+            frmCadAlunoTurma.Show();
+        }
+
+        //Fim ToolStrip Aluno -> Turma
     }
 }

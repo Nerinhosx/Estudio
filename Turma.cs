@@ -171,6 +171,22 @@ namespace Estudio
             return exAllAtv;
         }
 
+        public MySqlDataReader consultarTurmasAtivas()
+        {
+            MySqlDataReader exAllAtv = null;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand allAtv = new MySqlCommand("select Estudio_Modalidade.descricaoModalidade, diasemanaTurma, horaTurma from Estudio_Turma inner join Estudio_Modalidade on Estudio_Turma.ativa = 0 AND Estudio_Turma.idModalidade = Estudio_Modalidade.idEstudio_Modalidade", DAO_Conexao.con);
+                exAllAtv = allAtv.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return exAllAtv;
+        }
+
         public bool verificaTurma()
         {
             bool existe = false;

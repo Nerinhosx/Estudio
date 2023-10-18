@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,9 +18,35 @@ namespace Estudio
             InitializeComponent();
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnCad_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void txtCPF_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                Aluno al = new Aluno(txtCPF.Text);
+                if (al.consultarAluno())
+                {
+                    Turma t = new Turma();
+                    MySqlDataReader r = t.consultarTurmasAtivas();
+                    while (r.Read())
+                    {
+                        string mod = r["descricaoModalidade"].ToString();
+                        string ds = r["diasemanaTurma"].ToString();
+                        string h = r["horaTurma"].ToString();
+                        dgvTurma.Rows.Add(mod, ds, h);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Aluno inexistente.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
     }
 }
