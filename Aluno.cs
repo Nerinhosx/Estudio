@@ -106,20 +106,62 @@ namespace Estudio
             return cad;
         }
 
-        public bool verificaCPF()
+        public bool verificaCPF() //string CPF - sem parâmetro
         {
             int soma, resto, cont = 0;
             string cpf;
             soma = 0;
 
             cpf = CPF.Trim();
-            cpf = CPF.Replace(".", "");
-            cpf = CPF.Replace("-", "");
+            cpf = cpf.Replace(",", "");
+            cpf = cpf.Replace("-", "");
 
-            for (cont = 0; cont <= 11; cont++)
+            for (int i = 0; i < cpf.Length; i++)
             {
-                soma += CPF[cont];
+                int a = cpf[0] - '0';
+                int b = cpf[i] - '0';
+
+                if (a == b) cont++;
             }
+
+            if (cont == 11) return false;
+
+            for (int i = 1; i <= 9; i++)
+            {
+                soma += int.Parse(cpf.Substring(i - 1, 1)) * (11 - i);
+            }
+
+            resto = (soma * 10) % 11;
+
+            if ((resto == 10) || (resto == 11))
+            {
+                resto = 0;
+            }
+
+            if (resto != int.Parse(cpf.Substring(9, 1)))
+            {
+                return false;
+            }
+
+            soma = 0;
+
+            for (int i = 1; i <= 10; i++)
+            {
+                soma += int.Parse(cpf.Substring(i - 1, 1)) * (12 - i);
+            }
+
+            resto = (soma * 10) % 11;
+
+            if ((resto == 10) || (resto == 11))
+            {
+                resto = 0;
+            }
+
+            if (resto != int.Parse(cpf.Substring(10, 1)))
+            {
+                return false;
+            }
+
             return true;
         }
 
