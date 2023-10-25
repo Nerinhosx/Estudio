@@ -49,11 +49,20 @@ namespace Estudio
                             dgvTurma.Rows.Add(idT, mod, ds, h);
                         }
                         DAO_Conexao.con.Close();
-                        dgvTurma.Enabled = true;
                     }
                     else if (option == 1)
                     {
-
+                        AlunoEmTurma alt = new AlunoEmTurma(txtCPF.Text);
+                        MySqlDataReader r = alt.buscaTurmaMatriculado();
+                        while(r.Read())
+                        {
+                            int idT = int.Parse(r["idEstudio_Turma"].ToString());
+                            string mod = r["descricaoModalidade"].ToString();
+                            string ds = r["diasemanaTurma"].ToString();
+                            string h = r["horaTurma"].ToString();
+                            dgvTurma.Rows.Add(idT, mod, ds, h);
+                        }
+                        DAO_Conexao.con.Close();
                     }
                 }
                 else
@@ -80,7 +89,7 @@ namespace Estudio
             int totAlMat = t.buscaAlTotalEmMod(idM);
             if(totAlMat < qtdeMaxAl)
             {
-                if (alT.verificaMatriculado())
+                if (alT.verificaMatriculadoEmTurma())
                 {
                     MessageBox.Show("Erro na matrícula: Aluno já cadastrado nessa Turma.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }

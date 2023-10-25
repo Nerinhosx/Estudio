@@ -21,6 +21,11 @@ namespace Estudio
             this.idT = idT;
         }
 
+        public AlunoEmTurma(string cpfA)
+        {
+            this.cpfA = cpfA;
+        }
+
         public bool matricularAluno()
         {
             bool matriculou = false;
@@ -44,7 +49,7 @@ namespace Estudio
             return matriculou;
         }
 
-        public bool verificaMatriculado()
+        public bool verificaMatriculadoEmTurma()
         {
             bool jaMatriculado = false;
             try
@@ -70,6 +75,22 @@ namespace Estudio
                 DAO_Conexao.con.Close();
             }
             return jaMatriculado;
+        }
+
+        public MySqlDataReader buscaTurmaMatriculado()
+        {
+            MySqlDataReader exSTM = null;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand sTM = new MySqlCommand("select Estudio_Turma.idEstudio_Turma, Estudio_Modalidade.descricaoModalidade, Estudio_Turma.diasemanaTurma, Estudio_Turma.horaTurma from Estudio_AlunoTurma inner join Estudio_Turma inner join Estudio_Modalidade on Estudio_AlunoTurma.idTurma = Estudio_Turma.idEstudio_Turma AND Estudio_Turma.idModalidade = Estudio_Modalidade.idEstudio_Modalidade AND Estudio_AlunoTurma.cpfAluno = '"+ cpfA +"'", DAO_Conexao.con);
+                exSTM = sTM.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return exSTM;
         }
     }
 }

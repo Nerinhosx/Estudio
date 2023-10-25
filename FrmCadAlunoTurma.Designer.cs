@@ -126,7 +126,7 @@ namespace Estudio
             this.ClientSize = new System.Drawing.Size(450, 339);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmCadAlunoTurma";
-            this.Text = "Cadastrar Aluno em Turma";
+            this.Text = "Matricular Aluno em Turma";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTurma)).EndInit();
