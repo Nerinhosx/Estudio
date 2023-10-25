@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,55 @@ namespace Estudio
         {
             this.cpfA = cpfA;
             this.idT = idT;
+        }
+
+        public bool matricularAluno()
+        {
+            bool matriculou = false;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand matr = new MySqlCommand("insert into Estudio_AlunoTurma (cpfAluno, idTurma) values ('" + cpfA + "', " + idT + ")", DAO_Conexao.con);
+                matr.ExecuteNonQuery();
+                matriculou = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return matriculou;
+        }
+
+        public bool verificaMatriculado()
+        {
+            bool jaMatriculado = false;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand jaMatr = new MySqlCommand("select idTurma from Estudio_AlunoTurma where cpfAluno = '" + cpfA + "'", DAO_Conexao.con);
+                MySqlDataReader exJaMatr = jaMatr.ExecuteReader();
+                while (exJaMatr.Read())
+                {
+                    int idTurma = int.Parse(exJaMatr["idTurma"].ToString());
+                    if(idTurma == idT)
+                    {
+                        jaMatriculado = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return jaMatriculado;
         }
     }
 }

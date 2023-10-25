@@ -53,11 +53,27 @@ namespace Estudio
         {
             line = dgvTurma.CurrentRow.Index;
             id = (int)dgvTurma[0, line].Value;
+            btnCad.Enabled = true;
         }
 
         private void btnCad_Click(object sender, EventArgs e)
         {
             AlunoEmTurma alT = new AlunoEmTurma(txtCPF.Text, id);
+            if(alT.verificaMatriculado())
+            {
+                MessageBox.Show("Erro na matrícula: Aluno já cadastrado nessa Turma.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (alT.matricularAluno())
+                {
+                    MessageBox.Show("Aluno matriculado com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Erro na matrícula.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
