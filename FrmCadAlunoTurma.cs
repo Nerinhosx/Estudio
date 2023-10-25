@@ -13,13 +13,20 @@ namespace Estudio
 {
     public partial class FrmCadAlunoTurma : Form
     {
-        int line, id;
-        public FrmCadAlunoTurma()
+        int line, id, option;
+        public FrmCadAlunoTurma(int op)
         {
             InitializeComponent();
 
+            option = op;
+
             dgvTurma.Enabled = false;
-            btnCad.Enabled = false;
+            btnCadExc.Enabled = false;
+
+            if(option == 1)
+            {
+                btnCadExc.Text = "Excluir";
+            }
         }
 
         private void txtCPF_KeyPress(object sender, KeyPressEventArgs e)
@@ -29,18 +36,25 @@ namespace Estudio
                 Aluno al = new Aluno(txtCPF.Text);
                 if (al.consultarAluno())
                 {
-                    Turma t = new Turma();
-                    MySqlDataReader r = t.consultarTurmasAtivas();
-                    while (r.Read())
+                    if (option == 0)
                     {
-                        int idT = int.Parse(r["idEstudio_Turma"].ToString());
-                        string mod = r["descricaoModalidade"].ToString();
-                        string ds = r["diasemanaTurma"].ToString();
-                        string h = r["horaTurma"].ToString();
-                        dgvTurma.Rows.Add(idT, mod, ds, h);
+                        Turma t = new Turma();
+                        MySqlDataReader r = t.consultarTurmasAtivas();
+                        while (r.Read())
+                        {
+                            int idT = int.Parse(r["idEstudio_Turma"].ToString());
+                            string mod = r["descricaoModalidade"].ToString();
+                            string ds = r["diasemanaTurma"].ToString();
+                            string h = r["horaTurma"].ToString();
+                            dgvTurma.Rows.Add(idT, mod, ds, h);
+                        }
+                        DAO_Conexao.con.Close();
+                        dgvTurma.Enabled = true;
                     }
-                    DAO_Conexao.con.Close();
-                    dgvTurma.Enabled = true;
+                    else if (option == 1)
+                    {
+
+                    }
                 }
                 else
                 {
@@ -53,7 +67,7 @@ namespace Estudio
         {
             line = dgvTurma.CurrentRow.Index;
             id = (int)dgvTurma[0, line].Value;
-            btnCad.Enabled = true;
+            btnCadExc.Enabled = true;
         }
 
         private void btnCad_Click(object sender, EventArgs e)
