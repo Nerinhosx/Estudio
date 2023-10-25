@@ -1,7 +1,7 @@
 ﻿
 namespace Estudio
 {
-    partial class FrmCadAlunoTurma
+    partial class FrmCadExcAlunoTurma
     {
         /// <summary>
         /// Required designer variable.

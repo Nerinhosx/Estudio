@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace Estudio
 {
-    public partial class FrmCadAlunoTurma : Form
+    public partial class FrmCadExcAlunoTurma : Form
     {
         int line, id, option;
-        public FrmCadAlunoTurma(int op)
+        public FrmCadExcAlunoTurma(int op)
         {
             InitializeComponent();
 
@@ -33,6 +33,7 @@ namespace Estudio
         {
             if (e.KeyChar == 13)
             {
+                dgvTurma.Rows.Clear();
                 Aluno al = new Aluno(txtCPF.Text);
                 if (al.consultarAluno())
                 {
@@ -81,10 +82,10 @@ namespace Estudio
 
         private void btnCad_Click(object sender, EventArgs e)
         {
-            Modalidade m = new Modalidade();
-            Turma t = new Turma();
             AlunoEmTurma alT = new AlunoEmTurma(txtCPF.Text, id);
+            Turma t = new Turma();
             int idM = t.buscaIdModalidadePorIdTurma(id);
+            Modalidade m = new Modalidade();
             int qtdeMaxAl = m.buscarMaxAlunosModalidade(idM);
             int totAlMat = t.buscaAlTotalEmMod(idM);
             if(totAlMat < qtdeMaxAl)

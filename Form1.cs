@@ -184,14 +184,14 @@ namespace Estudio
 
         private void matricularAlunoEmTurmaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmCadAlunoTurma frmCadAlunoTurma = new FrmCadAlunoTurma(0);
+            FrmCadExcAlunoTurma frmCadAlunoTurma = new FrmCadExcAlunoTurma(0);
             frmCadAlunoTurma.MdiParent = this;
             frmCadAlunoTurma.Show();
         }
 
         private void desmatricularAlunoDeTurmaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmCadAlunoTurma frmCadAlunoTurma = new FrmCadAlunoTurma(1);
+            FrmCadExcAlunoTurma frmCadAlunoTurma = new FrmCadExcAlunoTurma(1);
             frmCadAlunoTurma.MdiParent = this;
             frmCadAlunoTurma.Text = "Desmatricular Aluno de Turma";
             frmCadAlunoTurma.Show();
