@@ -184,7 +184,7 @@ namespace Estudio
 
         private void matricularAlunoEmTurmaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmCadAlunoTurma frmCadAlunoTurma = new FrmCadAlunoTurma();
+            FrmCadAlunoTurma frmCadAlunoTurma = new FrmCadAlunoTurma(0);
             frmCadAlunoTurma.MdiParent = this;
             frmCadAlunoTurma.Show();
         }
