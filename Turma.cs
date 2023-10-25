@@ -325,5 +325,53 @@ namespace Estudio
             }
             return az;
         }
+
+        public int buscaIdModalidadePorIdTurma(int idT)
+        {
+            int idM = 0;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand schIdM = new MySqlCommand("select idModalidade from Estudio_Turma where idEstudio_Turma = " + idT, DAO_Conexao.con);
+                MySqlDataReader exSchIdM = schIdM.ExecuteReader();
+                while(exSchIdM.Read())
+                {
+                    idM = int.Parse(exSchIdM["idModalidade"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return idM;
+        }
+
+        public int buscaAlTotalEmMod(int idM)
+        {
+            int sum = 0;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand schTot = new MySqlCommand("select nalunosmatriculadosTurma from Estudio_Turma where idModalidade = " + idM, DAO_Conexao.con);
+                MySqlDataReader exSchTot = schTot.ExecuteReader();
+                while(exSchTot.Read())
+                {
+                    sum += int.Parse(exSchTot["nalunosmatriculadosTurma"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return sum;
+        }
     }
 }

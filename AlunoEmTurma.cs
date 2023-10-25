@@ -30,6 +30,8 @@ namespace Estudio
                 MySqlCommand matr = new MySqlCommand("insert into Estudio_AlunoTurma (cpfAluno, idTurma) values ('" + cpfA + "', " + idT + ")", DAO_Conexao.con);
                 matr.ExecuteNonQuery();
                 matriculou = true;
+                MySqlCommand upAlT = new MySqlCommand("update Estudio_Turma set nalunosmatriculados = nalunosmatriculados + 1 where idEstudio_Turma = " + idT, DAO_Conexao.con);
+                upAlT.ExecuteNonQuery();
             }
             catch (Exception ex)
             {

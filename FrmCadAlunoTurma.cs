@@ -72,21 +72,33 @@ namespace Estudio
 
         private void btnCad_Click(object sender, EventArgs e)
         {
+            Modalidade m = new Modalidade();
+            Turma t = new Turma();
             AlunoEmTurma alT = new AlunoEmTurma(txtCPF.Text, id);
-            if(alT.verificaMatriculado())
+            int idM = t.buscaIdModalidadePorIdTurma(id);
+            int qtdeMaxAl = m.buscarMaxAlunosModalidade(idM);
+            int totAlMat = t.buscaAlTotalEmMod(idM);
+            if(totAlMat < qtdeMaxAl)
             {
-                MessageBox.Show("Erro na matrícula: Aluno já cadastrado nessa Turma.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                if (alT.matricularAluno())
+                if (alT.verificaMatriculado())
                 {
-                    MessageBox.Show("Aluno matriculado com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Erro na matrícula: Aluno já cadastrado nessa Turma.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    MessageBox.Show("Erro na matrícula.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (alT.matricularAluno())
+                    {
+                        MessageBox.Show("Aluno matriculado com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro na matrícula.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Limite de alunos atingido.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

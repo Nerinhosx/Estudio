@@ -318,5 +318,29 @@ namespace Estudio
             }
             return id;
         }
+
+        public int buscarMaxAlunosModalidade(int idM)
+        {
+            int qtdeMxA = 0;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand schMaxAl = new MySqlCommand("select qtdeAlunos from Estudio_Modalidade where idEstudio_Modalidade = " + idM, DAO_Conexao.con);
+                MySqlDataReader exSchMaxAl = schMaxAl.ExecuteReader();
+                while(exSchMaxAl.Read())
+                {
+                    qtdeMxA = int.Parse(exSchMaxAl["qtdeAlunos"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return qtdeMxA;
+        }
     }
 }
