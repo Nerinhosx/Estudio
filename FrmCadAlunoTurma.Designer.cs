@@ -32,11 +32,12 @@ namespace Estudio
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCad = new System.Windows.Forms.Button();
             this.dgvTurma = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCPF = new System.Windows.Forms.MaskedTextBox();
+            this.idTurmaCad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modalidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diaSemana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtCPF = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTurma)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +50,7 @@ namespace Estudio
             this.groupBox1.Controls.Add(this.txtCPF);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(383, 314);
+            this.groupBox1.Size = new System.Drawing.Size(425, 314);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Aluno/Turma";
@@ -58,7 +59,7 @@ namespace Estudio
             // 
             this.btnCad.Location = new System.Drawing.Point(9, 279);
             this.btnCad.Name = "btnCad";
-            this.btnCad.Size = new System.Drawing.Size(368, 29);
+            this.btnCad.Size = new System.Drawing.Size(410, 29);
             this.btnCad.TabIndex = 3;
             this.btnCad.Text = "Cadastrar";
             this.btnCad.UseVisualStyleBackColor = true;
@@ -68,28 +69,15 @@ namespace Estudio
             // 
             this.dgvTurma.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTurma.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idTurmaCad,
             this.modalidade,
             this.diaSemana,
             this.hora});
-            this.dgvTurma.Location = new System.Drawing.Point(9, 63);
+            this.dgvTurma.Location = new System.Drawing.Point(6, 63);
             this.dgvTurma.Name = "dgvTurma";
-            this.dgvTurma.Size = new System.Drawing.Size(368, 210);
+            this.dgvTurma.Size = new System.Drawing.Size(413, 210);
             this.dgvTurma.TabIndex = 2;
-            // 
-            // modalidade
-            // 
-            this.modalidade.HeaderText = "Modalidade";
-            this.modalidade.Name = "modalidade";
-            // 
-            // diaSemana
-            // 
-            this.diaSemana.HeaderText = "Dia da Semana";
-            this.diaSemana.Name = "diaSemana";
-            // 
-            // hora
-            // 
-            this.hora.HeaderText = "Horário";
-            this.hora.Name = "hora";
+            this.dgvTurma.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurma_CellClick);
             // 
             // label1
             // 
@@ -109,11 +97,33 @@ namespace Estudio
             this.txtCPF.TabIndex = 0;
             this.txtCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCPF_KeyPress);
             // 
+            // idTurmaCad
+            // 
+            this.idTurmaCad.HeaderText = "ID";
+            this.idTurmaCad.Name = "idTurmaCad";
+            this.idTurmaCad.Width = 70;
+            // 
+            // modalidade
+            // 
+            this.modalidade.HeaderText = "Modalidade";
+            this.modalidade.Name = "modalidade";
+            // 
+            // diaSemana
+            // 
+            this.diaSemana.HeaderText = "Dia da Semana";
+            this.diaSemana.Name = "diaSemana";
+            // 
+            // hora
+            // 
+            this.hora.HeaderText = "Horário";
+            this.hora.Name = "hora";
+            this.hora.Width = 90;
+            // 
             // FrmCadAlunoTurma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(409, 339);
+            this.ClientSize = new System.Drawing.Size(450, 339);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmCadAlunoTurma";
             this.Text = "Cadastrar Aluno em Turma";
@@ -131,6 +141,7 @@ namespace Estudio
         private System.Windows.Forms.MaskedTextBox txtCPF;
         private System.Windows.Forms.Button btnCad;
         private System.Windows.Forms.DataGridView dgvTurma;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idTurmaCad;
         private System.Windows.Forms.DataGridViewTextBoxColumn modalidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn diaSemana;
         private System.Windows.Forms.DataGridViewTextBoxColumn hora;

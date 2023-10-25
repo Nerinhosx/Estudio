@@ -8,10 +8,16 @@ namespace Estudio
 {
     class AlunoEmTurma
     {
-        private int idA;
+        private string cpfA;
         private int idT;
 
-        public int IdA { get => idA; set => idA = value; }
+        public string CpfA { get => cpfA; set => cpfA = value; }
         public int IdT { get => idT; set => idT = value; }
+
+        public AlunoEmTurma(string cpfA, int idT)
+        {
+            this.cpfA = cpfA;
+            this.idT = idT;
+        }
     }
 }

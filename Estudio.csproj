@@ -127,6 +127,12 @@
     <Compile Include="FrmConAtuTurma.Designer.cs">
       <DependentUpon>FrmConAtuTurma.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmExcAlunoTurma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExcAlunoTurma.Designer.cs">
+      <DependentUpon>FrmExcAlunoTurma.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmExcTurma.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmConAtuTurma.resx">
       <DependentUpon>FrmConAtuTurma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExcAlunoTurma.resx">
+      <DependentUpon>FrmExcAlunoTurma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmExcTurma.resx">
       <DependentUpon>FrmExcTurma.cs</DependentUpon>
