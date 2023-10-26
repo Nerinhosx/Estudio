@@ -26,6 +26,11 @@ namespace Estudio
             this.cpfA = cpfA;
         }
 
+        public AlunoEmTurma()
+        {
+
+        }
+
         public bool matricularAluno()
         {
             bool matriculou = false;

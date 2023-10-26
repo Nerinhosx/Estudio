@@ -120,7 +120,7 @@ namespace Estudio
                 }
                 else
                 {
-                    MessageBox.Show("Erro em desmatricular aluno.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Erro ao desmatricular aluno.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
