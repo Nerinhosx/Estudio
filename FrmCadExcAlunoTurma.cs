@@ -20,7 +20,6 @@ namespace Estudio
 
             option = op;
 
-            dgvTurma.Enabled = false;
             btnCadExc.Enabled = false;
 
             if(option == 1)
@@ -83,32 +82,46 @@ namespace Estudio
         private void btnCad_Click(object sender, EventArgs e)
         {
             AlunoEmTurma alT = new AlunoEmTurma(txtCPF.Text, id);
-            Turma t = new Turma();
-            int idM = t.buscaIdModalidadePorIdTurma(id);
-            Modalidade m = new Modalidade();
-            int qtdeMaxAl = m.buscarMaxAlunosModalidade(idM);
-            int totAlMat = t.buscaAlTotalEmMod(idM);
-            if(totAlMat < qtdeMaxAl)
+            if (option == 0)
             {
-                if (alT.verificaMatriculadoEmTurma())
+                Turma t = new Turma();
+                int idM = t.buscaIdModalidadePorIdTurma(id);
+                Modalidade m = new Modalidade();
+                int qtdeMaxAl = m.buscarMaxAlunosModalidade(idM);
+                int totAlMat = t.buscaAlTotalEmMod(idM);
+                if (totAlMat < qtdeMaxAl)
                 {
-                    MessageBox.Show("Erro na matrícula: Aluno já cadastrado nessa Turma.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    if (alT.matricularAluno())
+                    if (alT.verificaMatriculadoEmTurma())
                     {
-                        MessageBox.Show("Aluno matriculado com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Erro na matrícula: Aluno já cadastrado nessa Turma.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        MessageBox.Show("Erro na matrícula.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (alT.matricularAluno())
+                        {
+                            MessageBox.Show("Aluno matriculado com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erro na matrícula.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Limite de alunos atingido.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            else
+            else if(option == 1)
             {
-                MessageBox.Show("Limite de alunos atingido.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if(alT.desmatricularAluno())
+                {
+                    MessageBox.Show("Aluno desmatriculado com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Erro em desmatricular aluno.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

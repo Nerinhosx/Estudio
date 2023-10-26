@@ -92,5 +92,35 @@ namespace Estudio
             }
             return exSTM;
         }
+
+        public bool desmatricularAluno()
+        {
+            bool dsmu = false;
+            try
+            {
+                //Início deletando de Estudio_AlunoTurma
+                DAO_Conexao.con.Open();
+                MySqlCommand dsm = new MySqlCommand("delete from Estudio_AlunoTurma where cpfAluno = '" + cpfA + "' AND idTurma = " + idT, DAO_Conexao.con);
+                dsm.ExecuteNonQuery();
+                DAO_Conexao.con.Close();
+                //Fim deletando de Estudio_AlunoTurma
+
+                //Início alterando nalunosmatriculadosTurma de Estudio_Turma
+                DAO_Conexao.con.Open();
+                MySqlCommand dm = new MySqlCommand("update Estudio_Turma set nalunosmatriculadosTurma = nalunosmatriculadosTurma - 1 where idEstudio_Turma = " + idT, DAO_Conexao.con);
+                dm.ExecuteNonQuery();
+                dsmu = true;
+                //Fim alterando nalunosmatriculadosTurma de Estudio_Turma
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return dsmu;
+        }
     }
 }
