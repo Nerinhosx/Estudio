@@ -57,6 +57,8 @@ namespace Estudio
             this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.alunoEmTurmaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.matricularAlunoEmTurmaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.desmatricularAlunoDeTurmaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultarAlunosEmTurmaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.sairToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -65,7 +67,6 @@ namespace Estudio
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.desmatricularAlunoDeTurmaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -282,6 +283,7 @@ namespace Estudio
             this.alunoEmTurmaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.matricularAlunoEmTurmaToolStripMenuItem,
             this.desmatricularAlunoDeTurmaToolStripMenuItem,
+            this.consultarAlunosEmTurmaToolStripMenuItem,
             this.toolStripSeparator5,
             this.sairToolStripMenuItem4});
             this.alunoEmTurmaToolStripMenuItem.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -295,6 +297,20 @@ namespace Estudio
             this.matricularAlunoEmTurmaToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.matricularAlunoEmTurmaToolStripMenuItem.Text = "Matricular Aluno em Turma";
             this.matricularAlunoEmTurmaToolStripMenuItem.Click += new System.EventHandler(this.matricularAlunoEmTurmaToolStripMenuItem_Click);
+            // 
+            // desmatricularAlunoDeTurmaToolStripMenuItem
+            // 
+            this.desmatricularAlunoDeTurmaToolStripMenuItem.Name = "desmatricularAlunoDeTurmaToolStripMenuItem";
+            this.desmatricularAlunoDeTurmaToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.desmatricularAlunoDeTurmaToolStripMenuItem.Text = "Desmatricular Aluno de Turma";
+            this.desmatricularAlunoDeTurmaToolStripMenuItem.Click += new System.EventHandler(this.desmatricularAlunoDeTurmaToolStripMenuItem_Click);
+            // 
+            // consultarAlunosEmTurmaToolStripMenuItem
+            // 
+            this.consultarAlunosEmTurmaToolStripMenuItem.Name = "consultarAlunosEmTurmaToolStripMenuItem";
+            this.consultarAlunosEmTurmaToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.consultarAlunosEmTurmaToolStripMenuItem.Text = "Consultar Alunos em Turma";
+            this.consultarAlunosEmTurmaToolStripMenuItem.Click += new System.EventHandler(this.consultarAlunosEmTurmaToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
@@ -371,13 +387,6 @@ namespace Estudio
             this.label1.TabIndex = 0;
             this.label1.Text = "Login:";
             // 
-            // desmatricularAlunoDeTurmaToolStripMenuItem
-            // 
-            this.desmatricularAlunoDeTurmaToolStripMenuItem.Name = "desmatricularAlunoDeTurmaToolStripMenuItem";
-            this.desmatricularAlunoDeTurmaToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
-            this.desmatricularAlunoDeTurmaToolStripMenuItem.Text = "Desmatricular Aluno de Turma";
-            this.desmatricularAlunoDeTurmaToolStripMenuItem.Click += new System.EventHandler(this.desmatricularAlunoDeTurmaToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -438,6 +447,7 @@ namespace Estudio
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem desmatricularAlunoDeTurmaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultarAlunosEmTurmaToolStripMenuItem;
     }
 }
 

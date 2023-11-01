@@ -196,6 +196,13 @@ namespace Estudio
             frmCadAlunoTurma.Text = "Desmatricular Aluno de Turma";
             frmCadAlunoTurma.Show();
         }
+
+        private void consultarAlunosEmTurmaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmConAlunoTurma frmConAlunoTurma = new FrmConAlunoTurma();
+            frmConAlunoTurma.MdiParent = this;
+            frmConAlunoTurma.Show();
+        }
         //Fim ToolStrip Aluno -> Turma
     }
 }

@@ -127,5 +127,31 @@ namespace Estudio
             }
             return dsmu;
         }
+
+        public MySqlDataReader turmasComMatricula()
+        {
+            MySqlDataReader exTM = null;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand tM = new MySqlCommand("select distinct Estudio_Turma.idEstudio_Turma, Estudio_Modalidade.descricaoModalidade, Estudio_Turma.diasemanaTurma, Estudio_Turma.horaTurma from Estudio_AlunoTurma inner join Estudio_Turma inner join Estudio_Modalidade on Estudio_AlunoTurma.idTurma = Estudio_Turma.idEstudio_Turma AND Estudio_Turma.idModalidade = Estudio_Modalidade.idEstudio_Modalidade", DAO_Conexao.con);
+                exTM = tM.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return exTM;
+        }
+
+        /*public MySqlDataReader buscaAlunosEmTurma()
+        {
+            MySqlDataReader exAT = null;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand aT = new MySqlCommand("select ")
+            }
+        }*/
     }
 }
