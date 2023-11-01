@@ -57,6 +57,7 @@ namespace Estudio
             this.dgvTurma.Name = "dgvTurma";
             this.dgvTurma.Size = new System.Drawing.Size(443, 199);
             this.dgvTurma.TabIndex = 0;
+            this.dgvTurma.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTurma_CellClick);
             // 
             // idTurmaDgv
             // 
@@ -125,7 +126,6 @@ namespace Estudio
             this.dgvAlunos.Name = "dgvAlunos";
             this.dgvAlunos.Size = new System.Drawing.Size(244, 190);
             this.dgvAlunos.TabIndex = 1;
-            this.dgvAlunos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAlunos_CellClick);
             // 
             // cpfAlunoDgv
             // 

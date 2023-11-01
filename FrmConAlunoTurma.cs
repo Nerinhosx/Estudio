@@ -13,6 +13,7 @@ namespace Estudio
 {
     public partial class FrmConAlunoTurma : Form
     {
+        int line;
         public FrmConAlunoTurma()
         {
             InitializeComponent();
@@ -30,9 +31,20 @@ namespace Estudio
             DAO_Conexao.con.Close();
         }
 
-        private void dgvAlunos_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvTurma_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            dgvAlunos.Rows.Clear();
+            line = dgvTurma.CurrentRow.Index;
+            int idT = (int)dgvTurma[0, line].Value;
+            AlunoEmTurma alT = new AlunoEmTurma();
+            MySqlDataReader r = alT.buscaAlunosEmTurma(idT);
+            while(r.Read())
+            {
+                string cpf = r["CPFAluno"].ToString();
+                string nome = r["nomeAluno"].ToString();
+                dgvAlunos.Rows.Add(cpf, nome);
+            }
+            DAO_Conexao.con.Close();
         }
     }
 }

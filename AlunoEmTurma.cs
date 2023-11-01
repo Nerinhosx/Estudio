@@ -144,14 +144,20 @@ namespace Estudio
             return exTM;
         }
 
-        /*public MySqlDataReader buscaAlunosEmTurma()
+        public MySqlDataReader buscaAlunosEmTurma(int id)
         {
             MySqlDataReader exAT = null;
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand aT = new MySqlCommand("select ")
+                MySqlCommand aT = new MySqlCommand("select Estudio_Aluno.CPFAluno, nomeAluno from Estudio_Aluno inner join Estudio_AlunoTurma on Estudio_Aluno.CPFAluno = Estudio_AlunoTurma.cpfAluno AND Estudio_AlunoTurma.idTurma = " + id, DAO_Conexao.con);
+                exAT = aT.ExecuteReader();
             }
-        }*/
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return exAT;
+        }
     }
 }
