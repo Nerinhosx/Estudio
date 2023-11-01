@@ -32,7 +32,8 @@ namespace Estudio
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Aluno aluno = new Aluno(txtCPF.Text, txtNome.Text, txtEnd.Text, txtNumero.Text, txtBairro.Text, txtCompl.Text, txtCEP.Text, txtCidade.Text, txtEstado.Text, txtTel.Text, txtEmail.Text);
+            byte[] foto = ConverterFotoParaByteArray();
+            Aluno aluno = new Aluno(txtCPF.Text, txtNome.Text, txtEnd.Text, txtNumero.Text, txtBairro.Text, txtCompl.Text, txtCEP.Text, txtCidade.Text, txtEstado.Text, txtTel.Text, txtEmail.Text, foto);
             
             if (aluno.cadastrarAluno())
             {
@@ -78,6 +79,39 @@ namespace Estudio
                 {
                     MessageBox.Show("Falha no cadastro: CPF inválido.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            dialog.Title = "Abrir foto";
+            dialog.Filter = "JPG (*.jpg)|*.jpg" + "|All files (*.*)|*.*";
+
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    pictureBox1.Image = new Bitmap(dialog.OpenFile());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro: não foi possível carregar a foto.", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            dialog.Dispose();
+        }
+
+        private byte[] ConverterFotoParaByteArray() 
+        {
+            using (var stream = new System.IO.MemoryStream())
+            {
+                pictureBox1.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                stream.Seek(0, System.IO.SeekOrigin.Begin);
+                byte[] bArray = new byte[stream.Length];
+                stream.Read(bArray, 0, System.Convert.ToInt32(stream.Length));
+                return bArray;
             }
         }
     }
