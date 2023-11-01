@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,6 @@ namespace Estudio
             {
                 button1.Visible = false;
                 btnAtualizar.Visible = false;
-                pictureBox1.Visible = false;
                 btnAtivar.Visible = false;
                 groupBox1.Text = "Consulta";
             }
@@ -45,8 +45,9 @@ namespace Estudio
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            Aluno aluno = new Aluno(txtCPF.Text, txtNome.Text, txtEnd.Text, txtNumero.Text, txtBairro.Text, txtComp.Text, txtCEP.Text, txtCidade.Text, txtEstado.Text, txtTel.Text, txtEmail.Text);
-            if(aluno.atualizarAluno())
+            byte[] foto = ConverterFotoParaByteArray();
+            Aluno aluno = new Aluno(txtCPF.Text, txtNome.Text, txtEnd.Text, txtNumero.Text, txtBairro.Text, txtComp.Text, txtCEP.Text, txtCidade.Text, txtEstado.Text, txtTel.Text, txtEmail.Text, foto);
+            if (aluno.atualizarAluno())
             {
                 MessageBox.Show("Aluno atualizado com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -94,6 +95,20 @@ namespace Estudio
                             txtEstado.Text = r["estadoAluno"].ToString();
                             txtTel.Text = r["telefoneAluno"].ToString();
                             txtEmail.Text = r["emailAluno"].ToString();
+                            try
+                            {
+                                string imagem = Convert.ToString(DateTime.Now.ToFileTime());
+                                byte[] bimage = (byte[])r["fotoAluno"];
+                                FileStream fs = new FileStream(imagem, FileMode.CreateNew, FileAccess.Write);
+                                fs.Write(bimage, 0, bimage.Length - 1);
+                                fs.Close();
+                                pictureBox1.Image = Image.FromFile(imagem);
+                                r.Close();
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Erro ao carregar a foto");
+                            }
                         }
                         DAO_Conexao.con.Close();
                         if(aluno.verificaInativo())
@@ -139,6 +154,21 @@ namespace Estudio
                             txtEstado.Text = r["estadoAluno"].ToString();
                             txtTel.Text = r["telefoneAluno"].ToString();
                             txtEmail.Text = r["emailAluno"].ToString();
+                            try
+                            {
+                                string imagem = Convert.ToString(DateTime.Now.ToFileTime());
+                                byte[] bimage = (byte[])r["fotoAluno"];
+                                FileStream fs = new FileStream(imagem, FileMode.CreateNew, FileAccess.Write);
+                                fs.Write(bimage, 0, bimage.Length - 1);
+                                fs.Close();
+                                pictureBox1.Image = Image.FromFile(imagem);
+                                r.Close();
+                            }
+                            catch
+                            {
+                                pictureBox1.Image = Image.FromFile("negado.png");
+                                MessageBox.Show("Erro ao carregar a foto");
+                            }
                         }
                         DAO_Conexao.con.Close();
                     }
@@ -161,6 +191,39 @@ namespace Estudio
             else
             {
                 MessageBox.Show("Falha na reativação.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            dialog.Title = "Abrir foto";
+            dialog.Filter = "JPG (*.jpg)|*.jpg" + "|All files (*.*)|*.*";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    pictureBox1.Image = new Bitmap(dialog.OpenFile());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro: não foi possível carregar a foto.", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            dialog.Dispose();
+        }
+
+        private byte[] ConverterFotoParaByteArray()
+        {
+            using (var stream = new System.IO.MemoryStream())
+            {
+                pictureBox1.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                stream.Seek(0, System.IO.SeekOrigin.Begin);
+                byte[] bArray = new byte[stream.Length];
+                stream.Read(bArray, 0, System.Convert.ToInt32(stream.Length));
+                return bArray;
             }
         }
     }

@@ -193,7 +193,8 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand atualiza = new MySqlCommand("update Estudio_Aluno set nomeAluno = '" + Nome + "', ruaAluno = '"+ Rua +"', numeroAluno = '"+ Numero +"', bairroAluno = '"+ Bairro +"', complementoAluno = '"+ Complemento +"', CEPAluno = '"+ CEP + "', cidadeAluno = '"+ Cidade +"', estadoAluno = '"+ Estado +"', telefoneAluno = '"+ Telefone +"', emailAluno = '"+ Email +"' where CPFAluno = '"+ CPF +"';", DAO_Conexao.con);
+                MySqlCommand atualiza = new MySqlCommand("update Estudio_Aluno set nomeAluno = '" + Nome + "', ruaAluno = '"+ Rua +"', numeroAluno = '"+ Numero +"', bairroAluno = '"+ Bairro +"', complementoAluno = '"+ Complemento +"', CEPAluno = '"+ CEP + "', cidadeAluno = '"+ Cidade +"', estadoAluno = '"+ Estado +"', telefoneAluno = '"+ Telefone +"', emailAluno = '"+ Email +"', fotoAluno = @foto where CPFAluno = '"+ CPF +"';", DAO_Conexao.con);
+                atualiza.Parameters.AddWithValue("foto", this.Foto);
                 atualiza.ExecuteNonQuery();
                 alt = true;
             }

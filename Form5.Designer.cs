@@ -298,6 +298,7 @@ namespace Estudio
             this.pictureBox1.Location = new System.Drawing.Point(529, 13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(167, 177);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -309,6 +310,7 @@ namespace Estudio
             this.button1.TabIndex = 2;
             this.button1.Text = "Escolher Foto";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form5
             // 
