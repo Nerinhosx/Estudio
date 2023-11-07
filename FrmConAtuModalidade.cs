@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace Estudio
 {
-    public partial class Form8 : Form
+    public partial class FrmConAtuModalidade : Form
     {
         int opcao;
-        public Form8(int op)
+        public FrmConAtuModalidade(int op)
         {
             InitializeComponent();
             opcao = op;

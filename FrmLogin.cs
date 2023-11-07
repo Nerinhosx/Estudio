@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace Estudio
 {
-    public partial class Form1 : Form
+    public partial class FrmLogin : Form
     {
         private static MySqlConnection con = new MySqlConnection();
 
-        public Form1()
+        public FrmLogin()
         {
             InitializeComponent();
 
@@ -30,7 +30,7 @@ namespace Estudio
         //Início ToolStrip Login
         private void cadastrarLoginToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            FrmCadUser form2 = new FrmCadUser();
             form2.MdiParent = this;
             form2.Show();
         }
@@ -72,14 +72,14 @@ namespace Estudio
         //Início ToolStrip Aluno
         private void cadastrarAlunoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
+            FrmCadAluno form3 = new FrmCadAluno();
             form3.MdiParent = this;
             form3.Show();
         }
 
         private void consultarAlunoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form5 form5 = new Form5(0);
+            FrmConAtuAluno form5 = new FrmConAtuAluno(0);
             form5.MdiParent = this;
             form5.Text = "Consultar Aluno";
             form5.Show();
@@ -87,14 +87,14 @@ namespace Estudio
 
         private void atualizarAlunoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form5 form5 = new Form5(1);
+            FrmConAtuAluno form5 = new FrmConAtuAluno(1);
             form5.MdiParent = this;
             form5.Show();
         }
 
         private void excluirAlunoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form4 form4 = new Form4();
+            FrmExcAluno form4 = new FrmExcAluno();
             form4.MdiParent = this;
             form4.Show();
         }
@@ -108,28 +108,28 @@ namespace Estudio
         //Início toolStrip Modalidade
         private void cadastrarModalidadeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form6 form6 = new Form6();
+            FrmCadModalidade form6 = new FrmCadModalidade();
             form6.MdiParent = this;
             form6.Show();
         }
 
         private void consultarModalidadeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form8 form8 = new Form8(0);
+            FrmConAtuModalidade form8 = new FrmConAtuModalidade(0);
             form8.MdiParent = this;
             form8.Show();
         }
 
         private void atualizarModalidadeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form8 form8 = new Form8(1);
+            FrmConAtuModalidade form8 = new FrmConAtuModalidade(1);
             form8.MdiParent = this;
             form8.Show();
         }
 
         private void excluirModalidadeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form7 form7 = new Form7();
+            FrmExcModalidade form7 = new FrmExcModalidade();
             form7.MdiParent = this;
             form7.Show();
         }

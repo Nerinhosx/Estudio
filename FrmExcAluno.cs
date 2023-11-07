@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Estudio
 {
-    public partial class Form4 : Form
+    public partial class FrmExcAluno : Form
     {
-        public Form4()
+        public FrmExcAluno()
         {
             InitializeComponent();
         }

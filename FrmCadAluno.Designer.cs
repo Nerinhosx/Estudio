@@ -1,7 +1,7 @@
 ﻿
 namespace Estudio
 {
-    partial class Form3
+    partial class FrmCadAluno
     {
         /// <summary>
         /// Required designer variable.

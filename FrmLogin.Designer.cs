@@ -1,7 +1,7 @@
 ﻿
 namespace Estudio
 {
-    partial class Form1
+    partial class FrmLogin
     {
         /// <summary>
         /// Variável de designer necessária.

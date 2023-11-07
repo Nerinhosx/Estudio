@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace Estudio
 {
-    public partial class Form5 : Form
+    public partial class FrmConAtuAluno : Form
     {
         int option;
-        public Form5(int op)
+        public FrmConAtuAluno(int op)
         {
             InitializeComponent();
             txtNome.Enabled = false;

@@ -1,7 +1,7 @@
 ﻿
 namespace Estudio
 {
-    partial class Form4
+    partial class FrmExcAluno
     {
         /// <summary>
         /// Required designer variable.
