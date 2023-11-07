@@ -40,11 +40,15 @@ namespace Estudio
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtNewDesc = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtNewDesc);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.btnAtivar);
             this.groupBox1.Controls.Add(this.btnAtualizar_Consultar);
             this.groupBox1.Controls.Add(this.txtAu);
@@ -57,14 +61,14 @@ namespace Estudio
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(328, 178);
+            this.groupBox1.Size = new System.Drawing.Size(328, 206);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modalidades";
             // 
             // btnAtivar
             // 
-            this.btnAtivar.Location = new System.Drawing.Point(174, 141);
+            this.btnAtivar.Location = new System.Drawing.Point(174, 177);
             this.btnAtivar.Name = "btnAtivar";
             this.btnAtivar.Size = new System.Drawing.Size(148, 23);
             this.btnAtivar.TabIndex = 9;
@@ -74,7 +78,7 @@ namespace Estudio
             // 
             // btnAtualizar_Consultar
             // 
-            this.btnAtualizar_Consultar.Location = new System.Drawing.Point(9, 142);
+            this.btnAtualizar_Consultar.Location = new System.Drawing.Point(9, 177);
             this.btnAtualizar_Consultar.Name = "btnAtualizar_Consultar";
             this.btnAtualizar_Consultar.Size = new System.Drawing.Size(158, 23);
             this.btnAtualizar_Consultar.TabIndex = 8;
@@ -148,13 +152,29 @@ namespace Estudio
             this.label1.TabIndex = 0;
             this.label1.Text = "Descrição:";
             // 
-            // Form8
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 145);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(87, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Nova Descrição:";
+            // 
+            // txtNewDesc
+            // 
+            this.txtNewDesc.Location = new System.Drawing.Point(99, 142);
+            this.txtNewDesc.Name = "txtNewDesc";
+            this.txtNewDesc.Size = new System.Drawing.Size(223, 20);
+            this.txtNewDesc.TabIndex = 11;
+            // 
+            // FrmConAtuModalidade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(352, 201);
+            this.ClientSize = new System.Drawing.Size(352, 231);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Form8";
+            this.Name = "FrmConAtuModalidade";
             this.Text = "Consultar Modalidades";
             this.Load += new System.EventHandler(this.Form8_Load);
             this.groupBox1.ResumeLayout(false);
@@ -176,5 +196,7 @@ namespace Estudio
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAtivar;
         private System.Windows.Forms.Button btnAtualizar_Consultar;
+        private System.Windows.Forms.TextBox txtNewDesc;
+        private System.Windows.Forms.Label label5;
     }
 }

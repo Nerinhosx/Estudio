@@ -35,6 +35,11 @@ namespace Estudio
                 btnAtivar.Visible = false;
                 btnAtivar.Enabled = true;
 
+                label5.Enabled = false;
+                label5.Visible = false;
+                txtNewDesc.Enabled = false;
+                txtNewDesc.Visible = false;
+
                 txtPrc.Enabled = false;
                 txtAu.Enabled = false;
                 txtAl.Enabled = false;
@@ -68,18 +73,34 @@ namespace Estudio
             }
             if(opcao == 1)
             {
-                String desc = cbxDesc.Text;
+                string desc = cbxDesc.Text;
                 float prc = float.Parse(txtPrc.Text);
                 int qAl = int.Parse(txtAl.Text);
                 int qAu = int.Parse(txtAu.Text);
-                Modalidade m = new Modalidade(desc, prc, qAl, qAu);
-                if(m.atualizarModalidade())
+                if(txtNewDesc.Text != "")
                 {
-                    MessageBox.Show("Modalidade atualizada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    string nDesc = txtNewDesc.Text;
+                    Modalidade m = new Modalidade(desc, nDesc, prc, qAl, qAu);
+                    if(m.atualizarModalidadeComDesc())
+                    {
+                        MessageBox.Show("Modalidade atualizada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Atualização de modalidade falha.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Atualização de modalidade falha.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Modalidade m = new Modalidade(desc, prc, qAl, qAu);
+                    if (m.atualizarModalidade())
+                    {
+                        MessageBox.Show("Modalidade atualizada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Atualização de modalidade falha.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
         }

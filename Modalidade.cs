@@ -9,7 +9,7 @@ namespace Estudio
 {
     class Modalidade
     {
-        private string Desc;
+        private string Desc, nDesc;
         private float Prc;
         private int qtde_alunos, qtde_aulas;
 
@@ -21,6 +21,15 @@ namespace Estudio
         public Modalidade(string desc, float prc, int qtdeAl, int qtdeAu)
         {
             Desc = desc;
+            Prc = prc;
+            qtde_alunos = qtdeAl;
+            qtde_aulas = qtdeAu;
+        }
+
+        public Modalidade(string desc, string ndesc, float prc, int qtdeAl, int qtdeAu)
+        {
+            Desc = desc;
+            nDesc = ndesc;
             Prc = prc;
             qtde_alunos = qtdeAl;
             qtde_aulas = qtdeAu;
@@ -119,7 +128,37 @@ namespace Estudio
                     int id = int.Parse(resultado["idEstudio_Modalidade"].ToString());
                     DAO_Conexao.con.Close();
                     DAO_Conexao.con.Open();
-                    MySqlCommand atual = new MySqlCommand("update Estudio_Modalidade set precoModalidade = " + Prc + ", qtdeAlunos = " + qtde_alunos + ", qtdeAulas = " + qtde_aulas + " where idEstudio_Modalidade = " + id, DAO_Conexao.con);
+                    MySqlCommand atual = new MySqlCommand("update Estudio_Modalidade set descricaoModalidade = '"+ Desc +"', precoModalidade = " + Prc + ", qtdeAlunos = " + qtde_alunos + ", qtdeAulas = " + qtde_aulas + " where idEstudio_Modalidade = " + id, DAO_Conexao.con);
+                    atual.ExecuteNonQuery();
+                    atualizou = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return atualizou;
+        }
+
+        public bool atualizarModalidadeComDesc()
+        {
+            bool atualizou = false;
+            MySqlDataReader resultado = null;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand consulta = new MySqlCommand("select idEstudio_Modalidade from Estudio_Modalidade where descricaoModalidade ='" + Desc + "'", DAO_Conexao.con);
+                resultado = consulta.ExecuteReader();
+                if (resultado.Read())
+                {
+                    int id = int.Parse(resultado["idEstudio_Modalidade"].ToString());
+                    DAO_Conexao.con.Close();
+                    DAO_Conexao.con.Open();
+                    MySqlCommand atual = new MySqlCommand("update Estudio_Modalidade set descricaoModalidade = '" + nDesc + "', precoModalidade = " + Prc + ", qtdeAlunos = " + qtde_alunos + ", qtdeAulas = " + qtde_aulas + " where idEstudio_Modalidade = " + id, DAO_Conexao.con);
                     atual.ExecuteNonQuery();
                     atualizou = true;
                 }
