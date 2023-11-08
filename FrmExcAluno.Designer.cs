@@ -52,6 +52,7 @@ namespace Estudio
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(100, 22);
             this.maskedTextBox1.TabIndex = 1;
+            this.maskedTextBox1.TextChanged += new System.EventHandler(this.maskedTextBox1_TextChanged);
             // 
             // button1
             // 
@@ -64,7 +65,7 @@ namespace Estudio
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Form4
+            // FrmExcAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -72,7 +73,7 @@ namespace Estudio
             this.Controls.Add(this.button1);
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.label1);
-            this.Name = "Form4";
+            this.Name = "FrmExcAluno";
             this.Text = "Excluir Aluno";
             this.ResumeLayout(false);
             this.PerformLayout();

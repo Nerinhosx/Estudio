@@ -45,17 +45,27 @@ namespace Estudio
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            byte[] foto = ConverterFotoParaByteArray();
-            Aluno aluno = new Aluno(txtCPF.Text, txtNome.Text, txtEnd.Text, txtNumero.Text, txtBairro.Text, txtComp.Text, txtCEP.Text, txtCidade.Text, txtEstado.Text, txtTel.Text, txtEmail.Text, foto);
-            if (aluno.atualizarAluno())
+            if (option == 1)
             {
-                MessageBox.Show("Aluno atualizado com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Atualização falha.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                if ((txtCPF.Text != "") && (txtNome.Text != "") && (txtEnd.Text != "") && (txtNumero.Text != "") && (txtBairro.Text != "") && (txtComp.Text != "") && (txtCEP.Text != "") && (txtCidade.Text != "") && (txtEstado.Text != "") && (txtTel.Text != "") && (txtEmail.Text != "") && (pictureBox1.Image != null))
+                {
 
+                    byte[] foto = ConverterFotoParaByteArray();
+                    Aluno aluno = new Aluno(txtCPF.Text, txtNome.Text, txtEnd.Text, txtNumero.Text, txtBairro.Text, txtComp.Text, txtCEP.Text, txtCidade.Text, txtEstado.Text, txtTel.Text, txtEmail.Text, foto);
+                    if (aluno.atualizarAluno())
+                    {
+                        MessageBox.Show("Aluno atualizado com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Atualização falha.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Campo(s) vazio(s) identificado(s).", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         private void txtCPF_KeyPress(object sender, KeyPressEventArgs e)

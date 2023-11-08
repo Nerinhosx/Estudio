@@ -32,16 +32,49 @@ namespace Estudio
 
         private void button1_Click(object sender, EventArgs e)
         {
-            byte[] foto = ConverterFotoParaByteArray();
-            Aluno aluno = new Aluno(txtCPF.Text, txtNome.Text, txtEnd.Text, txtNumero.Text, txtBairro.Text, txtCompl.Text, txtCEP.Text, txtCidade.Text, txtEstado.Text, txtTel.Text, txtEmail.Text, foto);
-            
-            if (aluno.cadastrarAluno())
+            if ((txtCPF.Text != "") && (txtNome.Text != "") && (txtEnd.Text != "") && (txtNumero.Text != "") && (txtBairro.Text != "") && (txtCompl.Text != "") && (txtCEP.Text != "") && (txtCidade.Text != "") && (txtEstado.Text != "") && (txtTel.Text != "") && (txtEmail.Text != "") && (pictureBox1.Image != null))
             {
-                MessageBox.Show("Cadastro realizado com sucesso!");
+
+                byte[] foto = ConverterFotoParaByteArray();
+                Aluno aluno = new Aluno(txtCPF.Text, txtNome.Text, txtEnd.Text, txtNumero.Text, txtBairro.Text, txtCompl.Text, txtCEP.Text, txtCidade.Text, txtEstado.Text, txtTel.Text, txtEmail.Text, foto);
+
+                if (aluno.cadastrarAluno())
+                {
+                    MessageBox.Show("Cadastro realizado com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtBairro.Clear();
+                    txtCEP.Clear();
+                    txtCidade.Clear();
+                    txtCompl.Clear();
+                    txtCPF.Clear();
+                    txtEmail.Clear();
+                    txtEnd.Clear();
+                    txtEstado.Clear();
+                    txtNome.Clear();
+                    txtNumero.Clear();
+                    txtTel.Clear();
+                    txtNome.Enabled = false;
+                    txtEnd.Enabled = false;
+                    txtNumero.Enabled = false;
+                    txtBairro.Enabled = false;
+                    txtCompl.Enabled = false;
+                    txtCEP.Enabled = false;
+                    txtCidade.Enabled = false;
+                    txtEstado.Enabled = false;
+                    txtTel.Enabled = false;
+                    txtEmail.Enabled = false;
+                    pictureBox1.Image = null;
+
+                    button1.Enabled = false;
+                    button2.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Erro no cadastro!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Erro no cadastro!");
+                MessageBox.Show("Campo(s) vazio(s) identificado(s).", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -56,6 +89,7 @@ namespace Estudio
                     if (aluno.consultarAluno())
                     {
                         MessageBox.Show("Aluno já cadastrado!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        txtCPF.Clear();
                     }
                     else
                     {

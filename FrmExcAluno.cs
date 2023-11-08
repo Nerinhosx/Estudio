@@ -15,6 +15,7 @@ namespace Estudio
         public FrmExcAluno()
         {
             InitializeComponent();
+            button1.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -22,12 +23,33 @@ namespace Estudio
             Aluno aluno = new Aluno(maskedTextBox1.Text);
             if(aluno.consultarAluno())
             {
-                DAO_Conexao.con.Close();
-                if (aluno.excluirAluno())
+                if (aluno.verificaInativo())
                 {
-                    MessageBox.Show("Aluno excluído!");
+                    MessageBox.Show("Aluno já excluído.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    if (aluno.excluirAluno())
+                    {
+                        MessageBox.Show("Aluno excluído!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        button1.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro na exclusão.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("Aluno não cadastrado.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            maskedTextBox1.Clear();
+        }
+
+        private void maskedTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            button1.Enabled = true;
         }
     }
 }
