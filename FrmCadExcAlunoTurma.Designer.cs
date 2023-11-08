@@ -61,7 +61,7 @@ namespace Estudio
             this.btnCadExc.Name = "btnCadExc";
             this.btnCadExc.Size = new System.Drawing.Size(410, 29);
             this.btnCadExc.TabIndex = 3;
-            this.btnCadExc.Text = "Cadastrar";
+            this.btnCadExc.Text = "Matricular";
             this.btnCadExc.UseVisualStyleBackColor = true;
             this.btnCadExc.Click += new System.EventHandler(this.btnCad_Click);
             // 
@@ -119,13 +119,13 @@ namespace Estudio
             this.txtCPF.TabIndex = 0;
             this.txtCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCPF_KeyPress);
             // 
-            // FrmCadAlunoTurma
+            // FrmCadExcAlunoTurma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(450, 339);
             this.Controls.Add(this.groupBox1);
-            this.Name = "FrmCadAlunoTurma";
+            this.Name = "FrmCadExcAlunoTurma";
             this.Text = "Matricular Aluno em Turma";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

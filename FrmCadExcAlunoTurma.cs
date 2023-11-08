@@ -24,7 +24,7 @@ namespace Estudio
 
             if(option == 1)
             {
-                btnCadExc.Text = "Excluir";
+                btnCadExc.Text = "Desmatricular";
             }
         }
 
@@ -68,6 +68,7 @@ namespace Estudio
                 else
                 {
                     MessageBox.Show("Erro na busca de aluno: aluno inexistente.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCPF.Clear();
                 }
             }
         }
@@ -100,6 +101,7 @@ namespace Estudio
                         if (alT.matricularAluno())
                         {
                             MessageBox.Show("Aluno matriculado com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            btnCadExc.Enabled = false;
                         }
                         else
                         {
@@ -117,6 +119,19 @@ namespace Estudio
                 if(alT.desmatricularAluno())
                 {
                     MessageBox.Show("Aluno desmatriculado com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dgvTurma.Rows.Clear();
+                    AlunoEmTurma alt = new AlunoEmTurma(txtCPF.Text);
+                    MySqlDataReader r = alt.buscaTurmaMatriculado();
+                    while (r.Read())
+                    {
+                        int idT = int.Parse(r["idEstudio_Turma"].ToString());
+                        string mod = r["descricaoModalidade"].ToString();
+                        string ds = r["diasemanaTurma"].ToString();
+                        string h = r["horaTurma"].ToString();
+                        dgvTurma.Rows.Add(idT, mod, ds, h);
+                    }
+                    DAO_Conexao.con.Close();
+                    btnCadExc.Enabled = false;
                 }
                 else
                 {
