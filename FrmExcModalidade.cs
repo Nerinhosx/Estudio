@@ -25,22 +25,44 @@ namespace Estudio
                 comboBox1.Items.Add(r["descricaoModalidade"].ToString());
             }
             DAO_Conexao.con.Close();
+            btnExcMod.Enabled = false;
         }
 
         private void btnExcMod_Click(object sender, EventArgs e)
         {
             Modalidade m = new Modalidade(comboBox1.Text);
-            if(m.excluirModalidade())
+            if (m.verificaInativo())
             {
-                MessageBox.Show("Modalidade excluída com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                int id = m.consultarIdPorDesc(comboBox1.Text);
-                Console.WriteLine(id);
-                m.desativaTurmaPorModalidade(id);
+                MessageBox.Show("Modalidade já excluída.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                MessageBox.Show("Exclusão de modalidade falha!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (m.excluirModalidade())
+                {
+                    MessageBox.Show("Modalidade excluída com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    int id = m.consultarIdPorDesc(comboBox1.Text);
+                    Console.WriteLine(id);
+                    m.desativaTurmaPorModalidade(id);
+                    btnExcMod.Enabled = false;
+                    comboBox1.Text = "";
+                    comboBox1.Items.Clear();
+                    MySqlDataReader r = m.consultarModalidadesAtivas();
+                    while (r.Read())
+                    {
+                        comboBox1.Items.Add(r["descricaoModalidade"].ToString());
+                    }
+                    DAO_Conexao.con.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Exclusão de modalidade falha!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnExcMod.Enabled = true;
         }
     }
 }

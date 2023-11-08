@@ -19,25 +19,36 @@ namespace Estudio
 
         private void btnCadMod_Click(object sender, EventArgs e)
         {
-            float prc = float.Parse(txtPrcCadMod.Text);
-            int al = int.Parse(txtAlCadMod.Text);
-            int au = int.Parse(txtAuCadMod.Text);
-            Modalidade mod = new Modalidade(txtDescCadMod.Text, prc, al, au);
-
-            if(mod.consultarModalidadeExistente())
+            if ((txtAlCadMod.Text != "") && (txtAuCadMod.Text != "") && (txtDescCadMod.Text != "") && (txtPrcCadMod.Text != ""))
             {
-                if (mod.cadastrarModalidade())
+                float prc = float.Parse(txtPrcCadMod.Text);
+                int al = int.Parse(txtAlCadMod.Text);
+                int au = int.Parse(txtAuCadMod.Text);
+                Modalidade mod = new Modalidade(txtDescCadMod.Text, prc, al, au);
+
+                if (mod.consultarModalidadeExistente())
                 {
-                    MessageBox.Show("Modalidade cadastrada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (mod.cadastrarModalidade())
+                    {
+                        MessageBox.Show("Modalidade cadastrada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cadastro de modalidade falho.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Cadastro de modalidade falho.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Cadastro de modalidade falho: modalidade com a referida Descrição já cadastrada.", "O sistema infoma:", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                txtAlCadMod.Clear();
+                txtAuCadMod.Clear();
+                txtDescCadMod.Clear();
+                txtPrcCadMod.Clear();
             }
             else
             {
-                MessageBox.Show("Cadastro de modalidade falho: modalidade com a referida Descrição já cadastrada.", "O sistema infoma:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Campo(s) vazio(s) identificado(s).", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
