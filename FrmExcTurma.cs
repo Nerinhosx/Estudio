@@ -98,6 +98,22 @@ namespace Estudio
             if (t.excluirTurma(descMod, descDia, descHora))
             {
                 MessageBox.Show("Turma excluída com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                cbxDS.Text = "";
+                cbxDS.Items.Clear();
+                cbxDS.Enabled = false;
+
+                cbxHora.Text = "";
+                cbxHora.Items.Clear();
+                cbxHora.Enabled = false;
+
+                cbxMod.Text = "";
+                cbxMod.Items.Clear();
+                result = t.consultarModTurmas();
+                while (result.Read())
+                {
+                    cbxMod.Items.Add(result["descricaoModalidade"].ToString());
+                }
+                DAO_Conexao.con.Close();
             }
             else
             {

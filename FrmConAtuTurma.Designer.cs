@@ -130,11 +130,11 @@ namespace Estudio
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(368, 85);
+            this.label5.Location = new System.Drawing.Point(390, 85);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 13);
+            this.label5.Size = new System.Drawing.Size(71, 13);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Nº máx de alunos:";
+            this.label5.Text = "Nº de alunos:";
             // 
             // btnAtv
             // 

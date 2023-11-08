@@ -20,6 +20,7 @@ namespace Estudio
 
             option = op;
             txtMod.Enabled = false;
+            txtAl.Enabled = false;
             btnAtv.Enabled = false;
 
             if (option == 0)
@@ -83,19 +84,32 @@ namespace Estudio
 
         private void btnAtz_Click(object sender, EventArgs e)
         {
-            int idT = int.Parse(dgvTurma[0, line].Value.ToString());
-            string prof = txtProf.Text;
-            string ds = txtDS.Text;
-            string hora = txtHora.Text;
-            int qAl = int.Parse(txtAl.Text);
-            Turma t = new Turma();
-            if(t.atualizarTurma(idT, prof, ds, hora, qAl))
+            if ((txtDS.Text != "") && (txtHora.Text != "") && (txtProf.Text != ""))
             {
-                MessageBox.Show("Turma atualizada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                int idT = int.Parse(dgvTurma[0, line].Value.ToString());
+                string prof = txtProf.Text;
+                string ds = txtDS.Text;
+                string hora = txtHora.Text;
+                int qAl = int.Parse(txtAl.Text);
+                Turma t = new Turma();
+                if (t.atualizarTurma(idT, prof, ds, hora, qAl))
+                {
+                    MessageBox.Show("Turma atualizada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Falha na atualização da turma.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                txtAl.Clear();
+                txtDS.Clear();
+                txtHora.Clear();
+                txtMod.Clear();
+                txtProf.Clear();
+                btnAtv.Enabled = false;
             }
             else
             {
-                MessageBox.Show("Falha na atualização da turma.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Campo(s) vazio(s) identificado(s).", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -105,6 +119,7 @@ namespace Estudio
             if(t.ativarTurma(int.Parse(dgvTurma[0, line].Value.ToString())))
             {
                 MessageBox.Show("Turma reativada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnAtv.Enabled = false;
             }
             else
             {

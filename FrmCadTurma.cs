@@ -29,34 +29,44 @@ namespace Estudio
 
         private void btnCadTurma_Click(object sender, EventArgs e)
         {
-            int idMod = 0;
-            string mod = txtMod.Text;
-            string prof = txtProf.Text;
-            string dia_sem = txtDS.Text;
-            string hora = txtHora.Text;
-            int qAl = int.Parse(txtNumAl.Text);
-            Modalidade m = new Modalidade(mod);
-            MySqlDataReader modDesc = m.consultarModalidade();
-            while(modDesc.Read())
+            if ((txtDS.Text != "") && (txtHora.Text != "") && (txtMod.Text != "") && (txtProf.Text != ""))
             {
-                idMod = int.Parse(modDesc["idEstudio_Modalidade"].ToString());
-            }
-            DAO_Conexao.con.Close();
-            Turma t = new Turma(idMod, prof, dia_sem, hora, qAl);
-            if (t.verificaTurma() == false)
-            {
-                if (t.cadastrarTurma())
+                int idMod = 0;
+                string mod = txtMod.Text;
+                string prof = txtProf.Text;
+                string dia_sem = txtDS.Text;
+                string hora = txtHora.Text;
+                Modalidade m = new Modalidade(mod);
+                MySqlDataReader modDesc = m.consultarModalidade();
+                while (modDesc.Read())
                 {
-                    MessageBox.Show("Turma cadastrada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    idMod = int.Parse(modDesc["idEstudio_Modalidade"].ToString());
+                }
+                DAO_Conexao.con.Close();
+                Turma t = new Turma(idMod, prof, dia_sem, hora);
+                if (t.verificaTurma() == false)
+                {
+                    if (t.cadastrarTurma())
+                    {
+                        MessageBox.Show("Turma cadastrada com sucesso!", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cadastro de turma falho.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Cadastro de turma falho.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Turma com tal modalidade, dias da semana e horário já existente.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                txtDS.Clear();
+                txtHora.Clear();
+                txtMod.Clear();
+                txtProf.Clear();
             }
             else
             {
-                MessageBox.Show("Turma com tal modalidade, dias da semana e horário já existente.", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Campo(s) vazio(s) identificado(s).", "O sistema informa:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
